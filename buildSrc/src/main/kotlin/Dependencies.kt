@@ -4,6 +4,7 @@ object Dependencies {
 
     const val timber = "com.jakewharton.timber:timber:4.7.1"
     const val roxie = "com.github.levinzonr:roxie:1.5.0"
+    const val spotifyAuth = "com.spotify.android:auth:1.2.5"
 
     object SafeRouting {
         const val compiler = "com.github.levinzonr.compose-safe-routing:compiler:1.0.0"

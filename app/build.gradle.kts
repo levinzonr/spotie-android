@@ -108,6 +108,8 @@ dependencies {
     implementation(Dependencies.Compose.lifecycle)
     implementation(Dependencies.Compose.livedata)
 
+    implementation(Dependencies.spotifyAuth)
+
 
     implementation(Dependencies.Navigation.compose)
     implementation(Dependencies.Navigation.hilt)

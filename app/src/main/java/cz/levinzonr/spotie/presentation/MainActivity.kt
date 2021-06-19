@@ -7,6 +7,7 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.material.*
 import androidx.compose.ui.Modifier
 import androidx.hilt.navigation.compose.hiltViewModel
+import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.currentBackStackEntryAsState
@@ -19,6 +20,7 @@ import cz.levinzonr.spotie.presentation.navigation.MenuItem
 import cz.levinzonr.spotie.presentation.screens.details.DetailsScreen
 import cz.levinzonr.spotie.presentation.screens.details.Routes
 import cz.levinzonr.spotie.presentation.screens.home.HomeScreen
+import cz.levinzonr.spotie.presentation.screens.login.LoginScreen
 import cz.levinzonr.spotie.presentation.screens.settings.SettingsScreen
 import cz.levinzonr.spotie.presentation.theme.AppTheme
 import dagger.hilt.android.AndroidEntryPoint
@@ -34,39 +36,7 @@ class MainActivity : ComponentActivity() {
                 val navController = rememberNavController()
                 val state = navController.currentBackStackEntryAsState().value
                 Timber.d("State : ${state?.destination?.route}")
-                Surface(color = MaterialTheme.colors.background) {
-                    val items = listOf(MenuItem.Home, MenuItem.Settings, MenuItem.Temp)
-                    Scaffold(
-                        bottomBar = { AppBottomNav(items = items, navController) }
-                    ) {
-                        NavHost(
-                            navController = navController,
-                            startDestination = MenuItem.Home.route,
-                            modifier = Modifier.padding(it)
-                        ) {
-                            navigation(Routes.home.path, MenuItem.Home.route) {
-                                composable(Routes.home) {
-                                    HomeScreen(
-                                        hiltViewModel(),
-                                        onNavigate = {
-                                            navController.navigate(it)
-                                        }
-                                    )
-                                }
-                                composable(Routes.details) {
-                                    DetailsScreen(hiltViewModel())
-                                }
-                            }
-
-                            composable(Routes.settings) {
-                                SettingsScreen()
-                            }
-                            composable("temp") {
-                                Placeholder()
-                            }
-                        }
-                    }
-                }
+                LoginScreen(viewModel())
             }
         }
     }
