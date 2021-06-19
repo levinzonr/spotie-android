@@ -110,6 +110,9 @@ dependencies {
     implementation(Dependencies.Compose.lifecycle)
     implementation(Dependencies.Compose.livedata)
 
+    // accompanist
+    implementation(Dependencies.Accompanist.coil)
+
     implementation(Dependencies.spotifyAuth)
 
 
