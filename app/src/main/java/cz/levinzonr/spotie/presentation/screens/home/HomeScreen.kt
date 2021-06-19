@@ -15,10 +15,10 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Devices
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.lifecycle.viewmodel.compose.viewModel
+import cz.levinzonr.router.core.Route
 import cz.levinzonr.spotie.presentation.screens.details.RoutesActions
 import cz.levinzonr.spotie.presentation.theme.AppTheme
 import cz.levinzonr.spotie.presentation.utils.NavigationAction
-import cz.levinzonr.router.core.Route
 
 @Route("home")
 @Composable

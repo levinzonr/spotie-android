@@ -1,9 +1,9 @@
 package cz.levinzonr.spotie.presentation.screens.home
 
+import cz.levinzonr.roxie.RoxieViewModel
 import cz.levinzonr.spotie.domain.usecases.GetModelUseCase
 import cz.levinzonr.spotie.domain.usecases.ifError
 import cz.levinzonr.spotie.domain.usecases.ifSuccess
-import cz.levinzonr.roxie.RoxieViewModel
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
