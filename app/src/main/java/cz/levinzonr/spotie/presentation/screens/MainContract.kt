@@ -1,4 +1,4 @@
-package cz.levinzonr.spotie.presentation.screens.login
+package cz.levinzonr.spotie.presentation.screens
 
 import android.content.Intent
 import cz.levinzonr.roxie.BaseAction

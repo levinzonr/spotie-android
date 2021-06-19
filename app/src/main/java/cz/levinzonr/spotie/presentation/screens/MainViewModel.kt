@@ -1,11 +1,9 @@
-package cz.levinzonr.spotie.presentation.screens.login
+package cz.levinzonr.spotie.presentation.screens
 
-import android.app.Activity
 import com.spotify.sdk.android.auth.AuthorizationClient
 import com.spotify.sdk.android.auth.AuthorizationResponse
 import cz.levinzonr.roxie.RoxieViewModel
 import cz.levinzonr.spotie.domain.manager.UserManager
-import cz.levinzonr.spotie.domain.models.SpotifyCredentials
 import cz.levinzonr.spotie.domain.usecases.LoginUseCase
 import cz.levinzonr.spotie.domain.usecases.ifError
 import cz.levinzonr.spotie.domain.usecases.ifSuccess
@@ -15,7 +13,7 @@ import kotlinx.coroutines.flow.flow
 import javax.inject.Inject
 
 @HiltViewModel
-class LoginViewModel @Inject constructor(
+class MainViewModel @Inject constructor(
     private val userManager: UserManager,
     private val loginUseCase: LoginUseCase
 ) : RoxieViewModel<Action, State, Change>() {
@@ -32,6 +30,7 @@ class LoginViewModel @Inject constructor(
 
     init {
         startActionsObserver()
+        dispatch(Action.Init)
     }
 
     override fun emitAction(action: Action): Flow<Change> {
