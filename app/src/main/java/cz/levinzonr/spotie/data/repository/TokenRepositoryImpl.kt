@@ -10,9 +10,16 @@ class TokenRepositoryImpl @Inject constructor(
 
     companion object {
         private const val PREF_TOKEN = "token"
+        private const val PREF_REFRESH_TOKEN = "refresh_token"
     }
 
-    override fun get(): String? = prefManager.getString(PREF_TOKEN)
+    override var token: String?
+        get() = prefManager.getString(PREF_TOKEN)
+        set(value) = prefManager.setString(PREF_TOKEN, value)
 
-    override fun set(token: String) = prefManager.setString(PREF_TOKEN, token)
+
+    override var refreshToken: String?
+        get() = prefManager.getString(PREF_REFRESH_TOKEN)
+        set(value) = prefManager.setString(PREF_REFRESH_TOKEN, value)
+
 }

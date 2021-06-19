@@ -10,6 +10,7 @@ import cz.levinzonr.spotie.domain.usecases.ifSuccess
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
+import timber.log.Timber
 import javax.inject.Inject
 
 @HiltViewModel
@@ -49,7 +50,10 @@ class MainViewModel @Inject constructor(
         when (result.type) {
             AuthorizationResponse.Type.CODE -> {
                 loginUseCase.login(result.code)
-                    .ifError { emit(Change.LoginFailed) }
+                    .ifError {
+                        Timber.e(it)
+                        emit(Change.LoginFailed)
+                    }
                     .ifSuccess { emit(Change.LoginFinished) }
             }
             else -> {

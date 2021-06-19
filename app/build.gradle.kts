@@ -6,6 +6,8 @@ plugins {
     id("kotlin-android")
     id("kotlin-kapt")
     id("dagger.hilt.android.plugin")
+    id("kotlinx-serialization")
+
 }
 
 fun Project.createPropertiesFrom(filename: String) : Properties {

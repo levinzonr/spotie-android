@@ -17,7 +17,8 @@ object SpotifyModule {
     fun provideSpotifyCredentials() : SpotifyCredentials {
         return SpotifyCredentials(
             clientId = BuildConfig.CLIENT_ID,
-            redirectUri = BuildConfig.REDIRECT_URI
+            redirectUri = BuildConfig.REDIRECT_URI,
+            clientSecret = BuildConfig.CLIENT_SECRET
         )
     }
 

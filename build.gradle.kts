@@ -13,6 +13,7 @@ buildscript {
     dependencies {
         classpath(Plugins.gradle)
         classpath(Plugins.kotlin)
+        classpath(Plugins.kotlinSerialization)
         classpath("com.google.dagger:hilt-android-gradle-plugin:HEAD-SNAPSHOT")
 
         // NOTE: Do not place your application dependencies here; they belong
