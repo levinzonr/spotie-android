@@ -11,7 +11,7 @@ import cz.levinzonr.spotie.presentation.screens.MainViewModel
 
 
 @Composable
-fun LoginScreen(viewModel: MainViewModel = viewModel(), onHandleLoginEvent: () -> Unit) {
+fun LoginScreen(onHandleLoginEvent: () -> Unit) {
     Box(modifier = Modifier.fillMaxSize(), contentAlignment = Alignment.Center) {
         AppButton(text = "Login") {
             onHandleLoginEvent.invoke()

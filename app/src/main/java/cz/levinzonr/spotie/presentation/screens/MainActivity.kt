@@ -7,7 +7,6 @@ import androidx.activity.result.contract.ActivityResultContracts
 import androidx.activity.viewModels
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
-import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
 import com.spotify.sdk.android.auth.AuthorizationClient
@@ -42,7 +41,7 @@ class MainActivity : ComponentActivity() {
                 if (viewState.isLoggedIn) {
                     Placeholder()
                 } else {
-                    LoginScreen(viewModel(),
+                    LoginScreen(
                         onHandleLoginEvent = {
                             loginAction.launch(
                                 AuthorizationClient.createLoginActivityIntent(
