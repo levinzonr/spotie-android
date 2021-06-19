@@ -1,16 +1,21 @@
 package cz.levinzonr.spotie.presentation.screens.login
 
+import android.content.Intent
 import cz.levinzonr.roxie.BaseAction
 import cz.levinzonr.roxie.BaseChange
 import cz.levinzonr.roxie.BaseState
 
-class State() : BaseState
+data class State(
+    val isLoggedIn: Boolean = false
+) : BaseState
 
 sealed interface Change : BaseChange {
     object LoginStarted : Change
     object LoginFinished : Change
+    object LoginFailed : Change
 }
 
 sealed interface Action : BaseAction {
-    object LoginClicked : Action
+    object Init: Action
+    data class HandleLoginResult(val code: Int, val intent: Intent?) : Action
 }

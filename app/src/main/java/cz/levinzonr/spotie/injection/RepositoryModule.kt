@@ -1,7 +1,9 @@
 package cz.levinzonr.spotie.injection
 
 import cz.levinzonr.spotie.data.ModelAppRepository
+import cz.levinzonr.spotie.data.repository.TokenRepositoryImpl
 import cz.levinzonr.spotie.domain.repositories.ModelRepository
+import cz.levinzonr.spotie.domain.repositories.TokenRepository
 import dagger.Binds
 import dagger.Module
 import dagger.hilt.InstallIn
@@ -15,4 +17,8 @@ interface RepositoryModule {
     @Binds
     @Singleton
     fun bindRepository(repository: ModelAppRepository): ModelRepository
+
+    @Binds
+    @Singleton
+    fun bindTokenRepository(repository: TokenRepositoryImpl) : TokenRepository
 }
