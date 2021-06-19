@@ -3,7 +3,11 @@ package cz.levinzonr.spotie.injection
 import com.jakewharton.retrofit2.converter.kotlinx.serialization.asConverterFactory
 import cz.levinzonr.spotie.BuildConfig
 import cz.levinzonr.spotie.data.network.Api
+import cz.levinzonr.spotie.data.network.AppAuthenticator
 import cz.levinzonr.spotie.data.network.AuthApi
+import cz.levinzonr.spotie.data.network.AuthTokenInterceptor
+import cz.levinzonr.spotie.domain.repositories.TokenRepository
+import cz.levinzonr.spotie.domain.usecases.RefreshTokenUseCase
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -40,11 +44,15 @@ object NetworkModule {
     @Provides
     @Singleton
     @Named(CLIENT_API)
-    fun provideHttpClient(): OkHttpClient {
+    fun provideHttpClient(tokenRepository: TokenRepository, refreshTokenUseCase: RefreshTokenUseCase): OkHttpClient {
+        val interceptor = AuthTokenInterceptor(tokenRepository)
+        val authenticator = AppAuthenticator(refreshTokenUseCase)
+
         val clientBuilder = OkHttpClient.Builder()
             .connectTimeout(45, TimeUnit.SECONDS)
             .readTimeout(60, TimeUnit.SECONDS)
             .writeTimeout(60, TimeUnit.SECONDS)
+            .addInterceptor(interceptor)
 
         if (BuildConfig.DEBUG) {
             val logging = HttpLoggingInterceptor()
