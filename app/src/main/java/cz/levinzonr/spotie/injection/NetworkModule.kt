@@ -36,7 +36,6 @@ object NetworkModule {
     fun provideConverter() : Converter.Factory {
         val contentType = "application/json".toMediaType()
         return Json {
-            this.
             ignoreUnknownKeys = true
         }.asConverterFactory(contentType)
     }
@@ -53,6 +52,7 @@ object NetworkModule {
             .readTimeout(60, TimeUnit.SECONDS)
             .writeTimeout(60, TimeUnit.SECONDS)
             .addInterceptor(interceptor)
+            .authenticator(authenticator)
 
         if (BuildConfig.DEBUG) {
             val logging = HttpLoggingInterceptor()

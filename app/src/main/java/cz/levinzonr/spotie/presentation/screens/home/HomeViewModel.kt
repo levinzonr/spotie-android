@@ -2,16 +2,18 @@ package cz.levinzonr.spotie.presentation.screens.home
 
 import cz.levinzonr.roxie.RoxieViewModel
 import cz.levinzonr.spotie.domain.usecases.GetModelUseCase
+import cz.levinzonr.spotie.domain.usecases.GetUserUseCase
 import cz.levinzonr.spotie.domain.usecases.ifError
 import cz.levinzonr.spotie.domain.usecases.ifSuccess
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
+import timber.log.Timber
 import javax.inject.Inject
 
 @HiltViewModel
 class HomeViewModel @Inject constructor(
-    private val getModelUseCase: GetModelUseCase
+    private val getUserUseCase: GetUserUseCase
 ) : RoxieViewModel<Action, State, Change>() {
 
     override val initialState: State = State()
@@ -19,8 +21,7 @@ class HomeViewModel @Inject constructor(
     override val reducer: suspend (state: State, change: Change) -> State = { state, change ->
         when (change) {
             is Change.DataLoadingStart -> state.copy(isLoading = true)
-            is Change.DataLoaded -> state.copy(isLoading = false)
-            is Change.IncreaseCounter -> state
+            is Change.DataLoaded -> state.copy(isLoading = false, user = change.user)
         }
     }
 
@@ -32,18 +33,14 @@ class HomeViewModel @Inject constructor(
     override fun emitAction(action: Action): Flow<Change> {
         return when (action) {
             is Action.Init -> bindInitAction(action)
-            is Action.IncreaseButtonClick -> bindCounterIncreaseAction(action)
         }
     }
 
-    private fun bindCounterIncreaseAction(action: Action.IncreaseButtonClick): Flow<Change> = flow {
-    }
 
     private fun bindInitAction(init: Action.Init): Flow<Change> = flow {
         emit(Change.DataLoadingStart)
-        getModelUseCase.get()
-            .ifSuccess { emit(Change.DataLoaded) }
-            .ifError { emit(Change.DataLoaded) }
-        emit(Change.DataLoaded)
+        getUserUseCase.getUser()
+            .ifSuccess { emit(Change.DataLoaded(it)) }
+            .ifError { Timber.e(it) }
     }
 }

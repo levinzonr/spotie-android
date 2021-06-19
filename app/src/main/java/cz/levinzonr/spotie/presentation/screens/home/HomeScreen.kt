@@ -10,6 +10,7 @@ import androidx.compose.material.Scaffold
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
+import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Devices
@@ -26,20 +27,11 @@ fun HomeScreen(
     viewModel: HomeViewModel = viewModel(),
     onNavigate: NavigationAction = {}
 ) {
-    val state = viewModel.stateFlow.collectAsState(State()).value
-    Scaffold() {
-        Box(
-            modifier = Modifier
-                .fillMaxSize()
-                .clickable { onNavigate.invoke(RoutesActions.toDetails("naivagete")) },
-            contentAlignment = Alignment.Center
-        ) {
-            if (state.isLoading) {
-                CircularProgressIndicator()
-            } else {
-                Text(text = state.data ?: "")
-            }
-        }
+    val state by viewModel.stateFlow.collectAsState(initial = State())
+    if (state.isLoading) {
+        CircularProgressIndicator()
+    } else {
+        Text(text = state.user?.displayName.toString())
     }
 }
 
