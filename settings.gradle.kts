@@ -8,5 +8,5 @@ dependencyResolutionManagement {
         jcenter() // Warning: this repository is going to shut down soon
     }
 }
-rootProject.name = "cz.levinzonr.compose.template"
+rootProject.name = "cz.levinzonr.spotie"
 include(":app")

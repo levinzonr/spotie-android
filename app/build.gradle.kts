@@ -17,7 +17,7 @@ android {
     defaultConfig {
         versionCode = 1
         versionName = "0.0.1"
-        applicationId = "cz.levinzonr.compose.template"
+        applicationId = "cz.levinzonr.spotifaves"
 
         minSdk = BuildConfig.minSdk
         targetSdk = BuildConfig.targetSdk
