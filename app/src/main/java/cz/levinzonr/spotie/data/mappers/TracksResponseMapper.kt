@@ -8,7 +8,7 @@ object TracksResponseMapper : DtoMapper<TrackResponse, Track> {
     override fun toDomain(dto: TrackResponse): Track {
         return Track(
             title = dto.name,
-            imageUrl = dto.album.images.firstOrNull(),
+            imageUrl = dto.album.images.firstOrNull()?.url,
             artistName = dto.artists.firstOrNull()?.name ?: ""
         )
     }

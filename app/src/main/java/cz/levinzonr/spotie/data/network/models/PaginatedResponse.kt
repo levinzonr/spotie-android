@@ -1,11 +1,14 @@
 package cz.levinzonr.spotie.data.network.models
 
-data class PaginatedResponse<T>(
+import kotlinx.serialization.Serializable
+
+@Serializable
+data class PaginatedResponse(
         val href: String,
-        val items: List<T>,
+        val items: List<TrackResponse>,
         val limit: Int,
-        val next: String,
+        val next: String?,
         val offset: Int,
-        val previous: Any,
+        val previous: String? = null,
         val total: Int
 )

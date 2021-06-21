@@ -1,5 +1,8 @@
 package cz.levinzonr.spotie.data.network.models
 
+import kotlinx.serialization.Serializable
+
+@Serializable
 data class TrackResponse(
     val album: AlbumData,
     val artists: List<ArtistData>,
@@ -14,7 +17,7 @@ data class TrackResponse(
     val is_local: Boolean,
     val name: String,
     val popularity: Int,
-    val preview_url: String,
+    val preview_url: String? = null,
     val track_number: Int,
     val type: String,
     val uri: String
