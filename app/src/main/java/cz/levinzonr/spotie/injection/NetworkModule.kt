@@ -37,6 +37,7 @@ object NetworkModule {
         val contentType = "application/json".toMediaType()
         return Json {
             ignoreUnknownKeys = true
+            coerceInputValues = true
         }.asConverterFactory(contentType)
     }
 
