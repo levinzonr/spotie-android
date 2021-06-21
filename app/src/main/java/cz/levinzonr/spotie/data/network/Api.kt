@@ -13,9 +13,8 @@ interface Api {
     suspend fun getCurrentUserProfile(): UserResponse
 
     @GET("v1/me/top/tracks")
-    suspend fun getTopUserTracksAsync(@Query("time_range") timeRange: String) : PaginatedResponse
+    suspend fun getTopUserTracksAsync(@Query("time_range") timeRange: String): PaginatedResponse
 
     @GET("v1/tracks/{id}")
-    suspend fun getTrackDetails(@Path("id") trackId: String) : TrackResponse
-
+    suspend fun getTrackDetails(@Path("id") trackId: String): TrackResponse
 }

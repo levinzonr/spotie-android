@@ -34,5 +34,5 @@ interface RepositoryModule {
 
     @Binds
     @Singleton
-    fun tracksRepository(repository: TracksRepositoryImpl) : TracksRepository
+    fun tracksRepository(repository: TracksRepositoryImpl): TracksRepository
 }

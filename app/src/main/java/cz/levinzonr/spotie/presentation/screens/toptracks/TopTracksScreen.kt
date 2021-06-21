@@ -15,20 +15,17 @@ import cz.levinzonr.spotie.presentation.screens.toptracks.components.TracksCarou
 fun TopTracksScreen(viewModel: TopTracksViewModel = viewModel()) {
     val state = viewModel.stateFlow.collectAsState(initial = State.Idle).value
     Scaffold {
-        when(state) {
+        when (state) {
             is State.Idle, State.Loading -> CircularProgressIndicator()
             is State.ShowContent -> {
                 Column() {
                     TracksCarousel(tracks = state.topTracks.shortTerm) {
-
                     }
 
                     TracksCarousel(tracks = state.topTracks.midTerm) {
-
                     }
 
                     TracksCarousel(tracks = state.topTracks.longTerm) {
-
                     }
                 }
             }

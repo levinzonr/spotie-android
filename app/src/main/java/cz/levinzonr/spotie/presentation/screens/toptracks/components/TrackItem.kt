@@ -27,7 +27,8 @@ fun TrackItem(modifier: Modifier = Modifier, track: Track, onClick: UnitAction =
                 request = track.imageUrl,
                 requestBuilder = {
                     transformations(RoundedCornersTransformation(16f))
-                }),
+                }
+            ),
             contentDescription = "track_image"
         )
         Text(text = track.artistName)
