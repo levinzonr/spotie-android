@@ -24,13 +24,13 @@ interface RepositoryModule {
 
     @Binds
     @Singleton
-    fun bindTokenRepository(repository: TokenRepositoryImpl) : TokenRepository
+    fun bindTokenRepository(repository: TokenRepositoryImpl): TokenRepository
 
     @Binds
     @Singleton
-    fun bindAuthRepository(repositoryImpl: AuthRepositoryImpl) : AuthRepository
+    fun bindAuthRepository(repositoryImpl: AuthRepositoryImpl): AuthRepository
 
     @Binds
     @Singleton
-    fun bindUserRepository(repository: UserRepositoryImpl) : UserRepository
+    fun bindUserRepository(repository: UserRepositoryImpl): UserRepository
 }

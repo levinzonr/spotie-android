@@ -17,9 +17,7 @@ class TokenRepositoryImpl @Inject constructor(
         get() = prefManager.getString(PREF_TOKEN)
         set(value) = prefManager.setString(PREF_TOKEN, value)
 
-
     override var refreshToken: String?
         get() = prefManager.getString(PREF_REFRESH_TOKEN)
         set(value) = prefManager.setString(PREF_REFRESH_TOKEN, value)
-
 }

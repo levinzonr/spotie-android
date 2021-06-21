@@ -12,7 +12,7 @@ data class State(
 
 sealed class Change : BaseChange {
     object DataLoadingStart : Change()
-    data class DataLoaded(val user: User): Change()
+    data class DataLoaded(val user: User) : Change()
 }
 
 sealed class Action : BaseAction {

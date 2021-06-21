@@ -33,7 +33,7 @@ object NetworkModule {
     private const val RETROFIT_AUTH = "retrofit_auth"
 
     @Provides
-    fun provideConverter() : Converter.Factory {
+    fun provideConverter(): Converter.Factory {
         val contentType = "application/json".toMediaType()
         return Json {
             ignoreUnknownKeys = true
@@ -62,7 +62,6 @@ object NetworkModule {
 
         return clientBuilder.build()
     }
-
 
     @Provides
     @Singleton

@@ -16,6 +16,6 @@ sealed interface Change : BaseChange {
 }
 
 sealed interface Action : BaseAction {
-    object Init: Action
+    object Init : Action
     data class HandleLoginResult(val code: Int, val intent: Intent?) : Action
 }

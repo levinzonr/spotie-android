@@ -12,7 +12,7 @@ class RefreshTokenUseCase @Inject constructor(
         val refreshToken = requireNotNull(tokenRepository.refreshToken)
         val refreshed = authRepository.refreshToken(refreshToken)
         tokenRepository.token = refreshed.accessToken
-        refreshed.refreshToken?.let { tokenRepository.refreshToken = it}
+        refreshed.refreshToken?.let { tokenRepository.refreshToken = it }
         refreshed
     }
 }

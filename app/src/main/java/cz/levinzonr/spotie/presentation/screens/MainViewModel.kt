@@ -22,7 +22,7 @@ class MainViewModel @Inject constructor(
     override val initialState: State = State()
 
     override val reducer: suspend (state: State, change: Change) -> State = { state, change ->
-        when(change) {
+        when (change) {
             Change.LoginFailed -> state
             Change.LoginFinished -> state.copy(isLoggedIn = true)
             else -> state
@@ -61,5 +61,4 @@ class MainViewModel @Inject constructor(
             }
         }
     }
-
 }

@@ -8,7 +8,7 @@ class LoginUseCase @Inject constructor(
     private val authRepository: AuthRepository,
     private val tokenRepository: TokenRepository
 ) {
-    suspend fun login(token: String?) : UseCaseResult<Unit> = safeUseCaseCall {
+    suspend fun login(token: String?): UseCaseResult<Unit> = safeUseCaseCall {
         val userToken = requireNotNull(token)
         val token = authRepository.loginWithAuthCode(userToken)
         tokenRepository.refreshToken = token.refreshToken

@@ -1,7 +1,6 @@
 package cz.levinzonr.spotie.data.network
 
 import cz.levinzonr.spotie.data.network.models.AuthResponse
-import kotlinx.coroutines.Deferred
 import retrofit2.http.Field
 import retrofit2.http.FormUrlEncoded
 import retrofit2.http.Header
@@ -17,8 +16,7 @@ interface AuthApi {
         @Field("client_secret") clientSecret: String,
         @Field("grant_type") grant: String = "authorization_code",
         @Field("redirect_uri") uri: String = "yourcustomprotocol://callback"
-    ) : AuthResponse
-
+    ): AuthResponse
 
     @FormUrlEncoded
     @POST("api/token")
@@ -26,8 +24,5 @@ interface AuthApi {
         @Field("refresh_token") refreshToken: String,
         @Header("Authorization") authHeader: String,
         @Field("grant_type") grant: String = "refresh_token"
-    ) : AuthResponse
-
-
-
+    ): AuthResponse
 }

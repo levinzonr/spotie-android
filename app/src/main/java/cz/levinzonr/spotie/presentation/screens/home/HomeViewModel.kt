@@ -1,7 +1,6 @@
 package cz.levinzonr.spotie.presentation.screens.home
 
 import cz.levinzonr.roxie.RoxieViewModel
-import cz.levinzonr.spotie.domain.usecases.GetModelUseCase
 import cz.levinzonr.spotie.domain.usecases.GetUserUseCase
 import cz.levinzonr.spotie.domain.usecases.ifError
 import cz.levinzonr.spotie.domain.usecases.ifSuccess
@@ -35,7 +34,6 @@ class HomeViewModel @Inject constructor(
             is Action.Init -> bindInitAction(action)
         }
     }
-
 
     private fun bindInitAction(init: Action.Init): Flow<Change> = flow {
         emit(Change.DataLoadingStart)

@@ -6,5 +6,5 @@ import javax.inject.Inject
 class UserManager @Inject constructor(
     private val tokenRepository: TokenRepository
 ) {
-    fun isLoggedIn() : Boolean = tokenRepository.token != null
+    fun isLoggedIn(): Boolean = tokenRepository.token != null
 }

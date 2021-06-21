@@ -6,5 +6,5 @@ import retrofit2.http.GET
 interface Api {
 
     @GET("v1/me")
-    suspend fun getCurrentUserProfile() : UserResponse
+    suspend fun getCurrentUserProfile(): UserResponse
 }
