@@ -9,7 +9,7 @@ import androidx.compose.runtime.getValue
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.currentBackStackEntryAsState
 import cz.levinzonr.spotie.presentation.navigation.MenuItem
-import cz.levinzonr.spotie.presentation.screens.details.Routes
+import cz.levinzonr.spotie.presentation.screens.trackdetails.Routes
 import timber.log.Timber
 
 @Composable

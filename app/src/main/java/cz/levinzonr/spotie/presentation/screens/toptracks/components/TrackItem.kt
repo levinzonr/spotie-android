@@ -1,6 +1,7 @@
 package cz.levinzonr.spotie.presentation.screens.toptracks.components
 
 import androidx.compose.foundation.Image
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.size
@@ -18,6 +19,7 @@ import cz.levinzonr.spotie.presentation.utils.UnitAction
 @Composable
 fun TrackItem(modifier: Modifier = Modifier, track: Track, onClick: UnitAction = {}) {
     Column(
+        modifier = modifier.clickable { onClick.invoke() },
         verticalArrangement = Arrangement.Center,
         horizontalAlignment = Alignment.CenterHorizontally
     ) {

@@ -8,25 +8,37 @@ import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.lifecycle.viewmodel.compose.viewModel
 import cz.levinzonr.router.core.Route
+import cz.levinzonr.spotie.domain.models.Track
 import cz.levinzonr.spotie.presentation.screens.toptracks.components.TracksCarousel
+import cz.levinzonr.spotie.presentation.utils.NavigationAction
 
 @Composable
 @Route("tracks")
-fun TopTracksScreen(viewModel: TopTracksViewModel = viewModel()) {
+fun TopTracksScreen(viewModel: TopTracksViewModel = viewModel(), onTrackClicked: (Track) -> Unit) {
     val state = viewModel.stateFlow.collectAsState(initial = State.Idle).value
     Scaffold {
         when (state) {
             is State.Idle, State.Loading -> CircularProgressIndicator()
             is State.ShowContent -> {
                 Column() {
-                    TracksCarousel(tracks = state.topTracks.shortTerm) {
-                    }
+                    TracksCarousel(
+                        tracks = state.topTracks.shortTerm,
+                        title = "_First",
+                        onTrackClicked = onTrackClicked
+                    )
 
-                    TracksCarousel(tracks = state.topTracks.midTerm) {
-                    }
+                    TracksCarousel(
+                        tracks = state.topTracks.midTerm,
+                        title = "Second",
+                        onTrackClicked = onTrackClicked
+                    )
 
-                    TracksCarousel(tracks = state.topTracks.longTerm) {
-                    }
+                    TracksCarousel(
+                        tracks = state.topTracks.longTerm,
+                        title = "Last",
+                        onTrackClicked = onTrackClicked
+                    )
+
                 }
             }
         }

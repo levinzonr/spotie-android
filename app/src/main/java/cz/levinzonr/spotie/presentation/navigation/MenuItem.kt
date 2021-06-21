@@ -5,7 +5,7 @@ import androidx.compose.material.icons.rounded.Home
 import androidx.compose.material.icons.rounded.Settings
 import androidx.compose.material.icons.rounded.Share
 import androidx.compose.ui.graphics.vector.ImageVector
-import cz.levinzonr.spotie.presentation.screens.details.Routes
+import cz.levinzonr.spotie.presentation.screens.trackdetails.Routes
 
 sealed class MenuItem(val route: String, val icon: ImageVector) {
     object Home : MenuItem("home-flow", Icons.Rounded.Home)

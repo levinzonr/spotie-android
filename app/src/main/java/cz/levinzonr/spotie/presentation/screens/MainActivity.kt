@@ -7,12 +7,19 @@ import androidx.activity.result.contract.ActivityResultContracts
 import androidx.activity.viewModels
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
+import androidx.hilt.navigation.compose.hiltViewModel
+import androidx.navigation.compose.NavHost
+import androidx.navigation.compose.composable
 import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
 import com.spotify.sdk.android.auth.AuthorizationClient
 import com.spotify.sdk.android.auth.AuthorizationRequest
+import cz.levinzonr.spotie.presentation.extenstions.composable
+import cz.levinzonr.spotie.presentation.screens.trackdetails.Routes
 import cz.levinzonr.spotie.presentation.screens.login.LoginScreen
 import cz.levinzonr.spotie.presentation.screens.toptracks.TopTracksScreen
+import cz.levinzonr.spotie.presentation.screens.trackdetails.RoutesActions
+import cz.levinzonr.spotie.presentation.screens.trackdetails.TrackDetailsScreen
 import cz.levinzonr.spotie.presentation.theme.AppTheme
 import dagger.hilt.android.AndroidEntryPoint
 import timber.log.Timber
@@ -39,7 +46,19 @@ class MainActivity : ComponentActivity() {
                 Timber.d("State : ${state?.destination?.route}")
                 val viewState by viewModel.stateFlow.collectAsState(initial = State())
                 if (viewState.isLoggedIn) {
-                    TopTracksScreen()
+                    NavHost(navController = navController, startDestination = Routes.tracks.path) {
+                        composable(Routes.tracks) {
+                            TopTracksScreen(hiltViewModel()) {
+                                Timber.d("On Track: $it")
+                                navController.navigate(RoutesActions.toTrackDetails(it.title))
+                            }
+                        }
+
+                        composable(Routes.trackDetails) {
+                            TrackDetailsScreen(hiltViewModel())
+                        }
+
+                    }
                 } else {
                     LoginScreen(
                         onHandleLoginEvent = {
