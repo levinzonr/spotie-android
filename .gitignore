@@ -2,6 +2,8 @@
 *.apk
 *.ap_
 
+spotify.properties
+
 # Mac files
 .DS_Store
 

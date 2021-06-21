@@ -1,10 +1,24 @@
+import org.jetbrains.kotlin.konan.properties.Properties
+import java.io.FileInputStream
 
 plugins {
     id("com.android.application")
     id("kotlin-android")
     id("kotlin-kapt")
     id("dagger.hilt.android.plugin")
+    id("kotlinx-serialization")
+
 }
+
+fun Project.createPropertiesFrom(filename: String) : Properties {
+    val props = rootProject.file(filename)
+    return Properties().apply {  load(FileInputStream(props)) }
+}
+
+val spotifyProps = createPropertiesFrom("spotify.properties")
+
+
+
 
 fun com.android.build.api.dsl.BaseFlavor.buildConfigString(name: String, value: String) =
     buildConfigField("String", name, "\"$value\"")
@@ -40,7 +54,11 @@ android {
         create(Flavours.production) {
             dimension = Dimensions.environment
 
-            buildConfigString("API_URL", "https://reqres.in/api/")
+            buildConfigString("CLIENT_ID",spotifyProps.getProperty("client_id"))
+            buildConfigString("CLIENT_SECRET", spotifyProps.getProperty("client_secret"))
+            buildConfigString("REDIRECT_URI", spotifyProps.getProperty("redirect_uri"))
+            buildConfigString("API_URL", "https://api.spotify.com/")
+            buildConfigString("API_AUTH_URL", "https://accounts.spotify.com/")
         }
         create(Flavours.staging) {
             applicationIdSuffix = ".staging"
@@ -91,6 +109,11 @@ dependencies {
     implementation(Dependencies.Compose.activity)
     implementation(Dependencies.Compose.lifecycle)
     implementation(Dependencies.Compose.livedata)
+
+    // accompanist
+    implementation(Dependencies.Accompanist.coil)
+
+    implementation(Dependencies.spotifyAuth)
 
 
     implementation(Dependencies.Navigation.compose)

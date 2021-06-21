@@ -1,3 +1,10 @@
 package cz.levinzonr.spotie.data.network
 
-interface Api
+import cz.levinzonr.spotie.data.network.models.UserResponse
+import retrofit2.http.GET
+
+interface Api {
+
+    @GET("v1/me")
+    suspend fun getCurrentUserProfile(): UserResponse
+}

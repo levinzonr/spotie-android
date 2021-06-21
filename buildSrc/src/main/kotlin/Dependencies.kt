@@ -4,6 +4,7 @@ object Dependencies {
 
     const val timber = "com.jakewharton.timber:timber:4.7.1"
     const val roxie = "com.github.levinzonr:roxie:1.5.0"
+    const val spotifyAuth = "com.spotify.android:auth:1.2.5"
 
     object SafeRouting {
         const val compiler = "com.github.levinzonr.compose-safe-routing:compiler:1.0.0"
@@ -24,7 +25,18 @@ object Dependencies {
         const val kotlin = "org.jetbrains.kotlin:kotlin-stdlib:$version"
         const val coroutinesAndroid = "org.jetbrains.kotlinx:kotlinx-coroutines-android:$coroutinesVersion"
         const val coroutines = "org.jetbrains.kotlinx:kotlinx-coroutines-android:$coroutinesVersion"
-        const val serialization = "org.jetbrains.kotlinx:kotlinx-serialization-json:1.0.1"
+        const val serialization = "org.jetbrains.kotlinx:kotlinx-serialization-json:1.2.1"
+    }
+
+    object Accompanist {
+        private const val version = "0.11.0"
+        const val coil = "com.google.accompanist:accompanist-coil:$version"
+        const val windowInsets = "com.google.accompanist:accompanist-insets:$version"
+        const val placeholder = "com.google.accompanist:accompanist-placeholder$version"
+        const val flexLayout = "com.google.accompanist:accompanist-flowlayout:$version"
+        const val pager = "com.google.accompanist:accompanist-pager:$version"
+        const val permissions = "com.google.accompanist:accompanist-permissions:$version"
+        const val systemUi = "com.google.accompanist:accompanist-systemuicontroller:$version"
     }
 
     object Android {
