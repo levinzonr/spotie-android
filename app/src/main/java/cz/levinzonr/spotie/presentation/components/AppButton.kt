@@ -1,16 +1,17 @@
 package cz.levinzonr.spotie.presentation.components
 
 import androidx.compose.foundation.BorderStroke
+import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material.*
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.PlayArrow
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.Stable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.geometry.Offset
 import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.graphics.LinearGradientShader
-import androidx.compose.ui.graphics.SolidColor
+import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
@@ -27,24 +28,17 @@ fun AppButton(
     text: String,
     modifier: Modifier = Modifier,
     enabled: Boolean = true,
+    icon: ImageVector? = null,
     type: AppButtonType = AppButtonType.Filled,
     onClick: UnitAction
 ) {
-    val child = @Composable {
-        Text(
-            text = text,
-            style = MaterialTheme.typography.button,
-            modifier =  modifier.padding(horizontal = 32.dp),
-            color = MaterialTheme.colors.onSurface
-        )
-    }
     when (type) {
         AppButtonType.Filled -> Button(
             onClick = onClick,
             modifier = modifier,
             enabled = enabled
         ) {
-            child.invoke()
+            AppButtonContent(text = text, icon = icon)
         }
         AppButtonType.Outlined -> OutlinedButton(
             onClick = onClick,
@@ -52,15 +46,16 @@ fun AppButton(
             modifier = modifier,
             enabled = enabled
         ) {
-            child.invoke()
+            AppButtonContent(text = text, icon = icon)
         }
+
         AppButtonType.Text -> {
             TextButton(
                 onClick = onClick,
                 modifier = modifier,
                 enabled = enabled,
             ) {
-                child.invoke()
+                AppButtonContent(text = text, icon = icon)
             }
         }
     }
@@ -76,13 +71,26 @@ private fun GradientStroke(width: Dp, colors: List<Color>) : BorderStroke {
     )
 }
 
+@Composable
+private fun AppButtonContent(modifier: Modifier = Modifier, text: String, icon: ImageVector?) {
+    Row(modifier =  modifier.padding(horizontal = 32.dp)) {
+        icon?.let {
+            Icon(imageVector = it, contentDescription = "", modifier = Modifier.padding(end = 4.dp))
+        }
+        Text(
+            text = text,
+            style = MaterialTheme.typography.button,
+            color = MaterialTheme.colors.onSurface
+        )
+    }
+}
 
 
 @Preview
 @Composable
 fun PreviewOutlinedButton() {
     AppTheme {
-        AppButton(text = "Outlined", type = AppButtonType.Outlined) {
+        AppButton(text = "Outlined", icon = Icons.Default.PlayArrow, type = AppButtonType.Outlined) {
         }
     }
 }
