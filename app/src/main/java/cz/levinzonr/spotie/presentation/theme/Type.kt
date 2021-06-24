@@ -57,7 +57,7 @@ val Typography = Typography(
     ),
 
     button = TextStyle(
-        fontWeight = FontWeight.Bold,
+        fontWeight = FontWeight.SemiBold,
         fontSize = 18.sp
     ),
     caption = TextStyle(
