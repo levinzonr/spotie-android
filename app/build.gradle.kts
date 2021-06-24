@@ -112,6 +112,7 @@ dependencies {
 
     // accompanist
     implementation(Dependencies.Accompanist.coil)
+    implementation(Dependencies.Accompanist.pager)
 
     implementation(Dependencies.spotifyAuth)
 

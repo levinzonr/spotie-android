@@ -73,7 +73,7 @@ private fun GradientStroke(width: Dp, colors: List<Color>) : BorderStroke {
 
 @Composable
 private fun AppButtonContent(modifier: Modifier = Modifier, text: String, icon: ImageVector?) {
-    Row(modifier =  modifier.padding(horizontal = 32.dp)) {
+    Row(modifier =  modifier.padding(horizontal = 32.dp, vertical = 8.dp)) {
         icon?.let {
             Icon(imageVector = it, contentDescription = "", modifier = Modifier.padding(end = 4.dp))
         }
