@@ -15,16 +15,22 @@ import com.google.accompanist.pager.HorizontalPager
 import com.google.accompanist.pager.rememberPagerState
 import cz.levinzonr.spotie.presentation.components.AppButton
 import cz.levinzonr.spotie.presentation.components.AppButtonType
+import cz.levinzonr.spotie.presentation.screens.login.components.PageController
 import cz.levinzonr.spotie.presentation.theme.AppTheme
 
 @ExperimentalPagerApi
 @Composable
 fun LoginScreen(onHandleLoginEvent: () -> Unit) {
     Scaffold() {
-        Column(modifier = Modifier.fillMaxSize(), verticalArrangement = Arrangement.Center) {
+        Column(
+            modifier = Modifier.fillMaxSize(),
+            verticalArrangement = Arrangement.Center,
+            horizontalAlignment = Alignment.CenterHorizontally
+        ) {
+            val state = rememberPagerState(pageCount = 3)
             HorizontalPager(
                 modifier = Modifier.fillMaxWidth(),
-                state = rememberPagerState(pageCount = 3)
+                state = state
             ) {
                 Column(
                     verticalArrangement = Arrangement.Center,
@@ -37,6 +43,8 @@ fun LoginScreen(onHandleLoginEvent: () -> Unit) {
                     }
                 }
             }
+            Spacer(modifier = Modifier.padding(23.dp))
+            PageController(count = 3, current = state.currentPage)
         }
 
     }
@@ -47,7 +55,7 @@ fun LoginScreen(onHandleLoginEvent: () -> Unit) {
 fun ColumnScope.TutorialFirstPage() {
     TutorialHeaderText(text = "Welcome to Spotie")
     Spacer(modifier = Modifier.padding(vertical = 12.dp))
-    TutorialBodyText("Spotie allows to you view your most listened music on Spotify®  over the years",)
+    TutorialBodyText("Spotie allows to you view your most listened music on Spotify®  over the years")
 }
 
 

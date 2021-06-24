@@ -15,9 +15,9 @@ import cz.levinzonr.spotie.presentation.theme.LightGrey
 
 @Composable
 fun PageIndicator(modifier: Modifier = Modifier, isSelected: Boolean) {
-    val size = if (isSelected) 24.dp else 12.dp
+    val size = if (isSelected) 18.dp else 12.dp
     val colors = MaterialTheme.appGradient
-    Canvas(modifier = Modifier.size(size)) {
+    Canvas(modifier = modifier.size(size)) {
         when(isSelected) {
             true -> {
                 drawCircle(
