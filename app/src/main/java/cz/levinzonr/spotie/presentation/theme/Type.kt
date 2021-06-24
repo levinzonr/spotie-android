@@ -11,13 +11,13 @@ val Typography = Typography(
 
     h1 = TextStyle(
         fontFamily = appFontFamily,
-        fontWeight = FontWeight.Normal,
-        fontSize = 32.sp
+        fontWeight = FontWeight.W400,
+        fontSize = 36.sp
     ),
 
     h2 = TextStyle(
-        fontWeight = FontWeight.Normal,
-        fontSize = 28.sp
+        fontWeight = FontWeight.W400,
+        fontSize = 24.sp
     ),
 
     h3 = TextStyle(
@@ -48,8 +48,8 @@ val Typography = Typography(
     ),
 
     body1 = TextStyle(
-        fontWeight = FontWeight.Normal,
-        fontSize = 16.sp
+        fontWeight = FontWeight.W400,
+        fontSize = 18.sp
     ),
     body2 = TextStyle(
         fontWeight = FontWeight.Normal,
@@ -57,8 +57,8 @@ val Typography = Typography(
     ),
 
     button = TextStyle(
-        fontWeight = FontWeight.W500,
-        fontSize = 14.sp
+        fontWeight = FontWeight.Bold,
+        fontSize = 18.sp
     ),
     caption = TextStyle(
         fontWeight = FontWeight.Normal,
