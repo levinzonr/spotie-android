@@ -8,7 +8,7 @@ import cz.levinzonr.spotie.R
 
 val appFontFamily = sourceSansProFamily
 
-val sourceSansProFamily get() =  FontFamily(
+val sourceSansProFamily get() = FontFamily(
     listOf(
         Font(R.font.source_sans_pro_bold, FontWeight.Bold, FontStyle.Normal),
         Font(R.font.source_sans_pro_regular, FontWeight.Normal, FontStyle.Normal),

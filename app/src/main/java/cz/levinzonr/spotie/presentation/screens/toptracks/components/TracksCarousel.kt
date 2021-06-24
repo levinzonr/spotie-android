@@ -20,7 +20,6 @@ fun TracksCarousel(tracks: List<Track>, title: String, modifier: Modifier = Modi
             }
         }
     }
-
 }
 
 @Preview

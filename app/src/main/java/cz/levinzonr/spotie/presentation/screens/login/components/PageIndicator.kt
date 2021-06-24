@@ -5,7 +5,6 @@ import androidx.compose.foundation.layout.size
 import androidx.compose.material.MaterialTheme
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.geometry.Offset
 import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
@@ -18,7 +17,7 @@ fun PageIndicator(modifier: Modifier = Modifier, isSelected: Boolean) {
     val size = if (isSelected) 18.dp else 12.dp
     val colors = MaterialTheme.appGradient
     Canvas(modifier = modifier.size(size)) {
-        when(isSelected) {
+        when (isSelected) {
             true -> {
                 drawCircle(
                     center = this.center,
@@ -32,7 +31,6 @@ fun PageIndicator(modifier: Modifier = Modifier, isSelected: Boolean) {
                 )
             }
         }
-
     }
 }
 
@@ -41,7 +39,6 @@ fun PageIndicator(modifier: Modifier = Modifier, isSelected: Boolean) {
 fun PreviewPageIndicator() {
     AppTheme {
         PageIndicator(isSelected = false)
-
     }
 }
 

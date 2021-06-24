@@ -10,7 +10,6 @@ import androidx.lifecycle.viewmodel.compose.viewModel
 import cz.levinzonr.router.core.Route
 import cz.levinzonr.spotie.domain.models.Track
 import cz.levinzonr.spotie.presentation.screens.toptracks.components.TracksCarousel
-import cz.levinzonr.spotie.presentation.utils.NavigationAction
 
 @Composable
 @Route("tracks")
@@ -38,7 +37,6 @@ fun TopTracksScreen(viewModel: TopTracksViewModel = viewModel(), onTrackClicked:
                         title = "Last",
                         onTrackClicked = onTrackClicked
                     )
-
                 }
             }
         }

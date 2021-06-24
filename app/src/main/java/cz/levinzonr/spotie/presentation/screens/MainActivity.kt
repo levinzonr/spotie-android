@@ -16,9 +16,9 @@ import com.google.accompanist.pager.ExperimentalPagerApi
 import com.spotify.sdk.android.auth.AuthorizationClient
 import com.spotify.sdk.android.auth.AuthorizationRequest
 import cz.levinzonr.spotie.presentation.extenstions.composable
-import cz.levinzonr.spotie.presentation.screens.trackdetails.Routes
 import cz.levinzonr.spotie.presentation.screens.login.LoginScreen
 import cz.levinzonr.spotie.presentation.screens.toptracks.TopTracksScreen
+import cz.levinzonr.spotie.presentation.screens.trackdetails.Routes
 import cz.levinzonr.spotie.presentation.screens.trackdetails.RoutesActions
 import cz.levinzonr.spotie.presentation.screens.trackdetails.TrackDetailsScreen
 import cz.levinzonr.spotie.presentation.theme.AppTheme
@@ -59,7 +59,6 @@ class MainActivity : ComponentActivity() {
                         composable(Routes.trackDetails) {
                             TrackDetailsScreen(hiltViewModel())
                         }
-
                     }
                 } else {
                     LoginScreen(

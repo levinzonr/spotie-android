@@ -46,10 +46,8 @@ fun LoginScreen(onHandleLoginEvent: () -> Unit) {
             Spacer(modifier = Modifier.padding(23.dp))
             PageController(count = 3, current = state.currentPage)
         }
-
     }
 }
-
 
 @Composable
 fun ColumnScope.TutorialFirstPage() {
@@ -58,14 +56,12 @@ fun ColumnScope.TutorialFirstPage() {
     TutorialBodyText("Spotie allows to you view your most listened music on Spotify®  over the years")
 }
 
-
 @Composable
 fun ColumnScope.TutorialSecondPage() {
     TutorialHeaderText(text = "Relive your favorite music")
     Spacer(modifier = Modifier.padding(vertical = 12.dp))
     TutorialBodyText(text = "Add them to your playlist once again, learn lyrics and interesting facts about their audio-features")
 }
-
 
 @Composable
 fun ColumnScope.TutorialLastPage(onHandleLoginEvent: () -> Unit) {
@@ -104,8 +100,6 @@ fun TutorialHeaderText(text: String) {
 fun PreviewLoginScreen() {
     AppTheme {
         LoginScreen {
-
         }
     }
 }
-

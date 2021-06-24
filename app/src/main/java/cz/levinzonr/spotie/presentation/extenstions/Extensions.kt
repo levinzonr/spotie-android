@@ -17,7 +17,6 @@ fun NavGraphBuilder.composable(
     composable(spec.path, spec.navArgs, deepLinks, content)
 }
 
-
-val MaterialTheme.appGradient : List<Color> @Composable get() {
+val MaterialTheme.appGradient: List<Color> @Composable get() {
     return listOf(colors.primary, colors.secondary)
 }
