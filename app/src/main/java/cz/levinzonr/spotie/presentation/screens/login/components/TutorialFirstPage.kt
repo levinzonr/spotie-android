@@ -12,7 +12,6 @@ import androidx.compose.ui.unit.dp
 import cz.levinzonr.spotie.presentation.components.AppButton
 import cz.levinzonr.spotie.presentation.components.AppButtonType
 
-
 @Composable
 fun ColumnScope.TutorialFirstPage() {
     TutorialHeaderText(text = "Welcome to Spotie")
