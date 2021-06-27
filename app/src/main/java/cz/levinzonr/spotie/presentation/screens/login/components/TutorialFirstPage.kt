@@ -1,11 +1,14 @@
 package cz.levinzonr.spotie.presentation.screens.login.components
 
 import androidx.compose.foundation.Image
+import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.style.TextAlign
@@ -15,16 +18,16 @@ import cz.levinzonr.spotie.presentation.components.AppButtonType
 import cz.levinzonr.spotie.R
 
 @Composable
-fun ColumnScope.TutorialFirstPage() {
+fun TutorialFirstPage() {
     Text(text = "Welcome to", style = MaterialTheme.typography.h1)
-    Spacer(modifier = Modifier.size(32.dp))
+    Spacer(modifier = Modifier.size(24.dp))
     TutorialImage(res = R.drawable.img_app_logo_text)
-    Spacer(modifier = Modifier.padding(vertical = 56.dp))
+    Spacer(modifier = Modifier.size(100.dp))
     TutorialBodyText("Spotie allows to you view your most listened music on Spotify®  over the years")
 }
 
 @Composable
-fun ColumnScope.TutorialSecondPage() {
+fun TutorialSecondPage() {
     TutorialImage(res = R.drawable.img_tutorial_step2)
     Spacer(modifier = Modifier.size(56.dp))
     TutorialHeaderText(text = "Relive your favorite music")
@@ -34,16 +37,19 @@ fun ColumnScope.TutorialSecondPage() {
 
 
 @Composable
-fun ColumnScope.TutorialLastPage(onHandleLoginEvent: () -> Unit) {
+fun TutorialLastPage(onHandleLoginEvent: () -> Unit) {
+
     TutorialImage(res = R.drawable.img_tutorial_step3)
     Spacer(modifier = Modifier.size(56.dp))
     TutorialHeaderText(text = "One click away")
-    Spacer(modifier = Modifier.size(56.dp))
+    Spacer(modifier = Modifier.size(44.dp))
     TutorialBodyText(text = "Spotie  requires your permission to access your music library")
     Spacer(modifier = Modifier.size(56.dp))
-    AppButton(type = AppButtonType.Outlined,
+    AppButton(
+        type = AppButtonType.Outlined,
         icon = painterResource(id = R.drawable.img_spotify),
-        text = "Login with Spotify") {
+        text = "Login with Spotify"
+    ) {
         onHandleLoginEvent.invoke()
     }
 }
@@ -63,8 +69,7 @@ fun TutorialBodyText(text: String) {
     Text(
         text = text,
         style = MaterialTheme.typography.body1,
-        textAlign = TextAlign.Center,
-        modifier = Modifier.padding(horizontal = 32.dp)
+        textAlign = TextAlign.Center
     )
 }
 

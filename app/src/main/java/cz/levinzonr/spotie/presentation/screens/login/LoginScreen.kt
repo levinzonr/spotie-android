@@ -27,19 +27,27 @@ fun LoginScreen(onHandleLoginEvent: () -> Unit) {
         ) {
             val state = rememberPagerState(pageCount = 3)
             HorizontalPager(
-                modifier = Modifier.fillMaxWidth().fillMaxHeight(0.5f),
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .fillMaxHeight(0.5f),
                 state = state
             ) {
-                Column(
-                    verticalArrangement = Arrangement.Top,
-                    horizontalAlignment = Alignment.CenterHorizontally
-                ) {
-                    when (it) {
-                        0 -> TutorialFirstPage()
-                        1 -> TutorialSecondPage()
-                        2 -> TutorialLastPage(onHandleLoginEvent)
+                Box(modifier = Modifier.fillMaxSize(), contentAlignment = Alignment.Center) {
+                    Column(
+                        horizontalAlignment = Alignment.CenterHorizontally,
+                        verticalArrangement = Arrangement.Top,
+                        modifier = Modifier
+                            .fillMaxHeight()
+                            .fillMaxWidth(0.7f)
+                    ) {
+                        when (it) {
+                            0 -> TutorialFirstPage()
+                            1 -> TutorialSecondPage()
+                            2 -> TutorialLastPage(onHandleLoginEvent)
+                        }
                     }
                 }
+
             }
             Spacer(modifier = Modifier.padding(23.dp))
             PageController(pagerState = state)
