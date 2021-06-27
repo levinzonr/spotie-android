@@ -41,7 +41,9 @@ fun ColumnScope.TutorialLastPage(onHandleLoginEvent: () -> Unit) {
     Spacer(modifier = Modifier.size(56.dp))
     TutorialBodyText(text = "Spotie  requires your permission to access your music library")
     Spacer(modifier = Modifier.size(56.dp))
-    AppButton(type = AppButtonType.Outlined, text = "Login with Spotify") {
+    AppButton(type = AppButtonType.Outlined,
+        icon = painterResource(id = R.drawable.img_spotify),
+        text = "Login with Spotify") {
         onHandleLoginEvent.invoke()
     }
 }
