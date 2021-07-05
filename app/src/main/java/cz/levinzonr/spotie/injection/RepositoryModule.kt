@@ -1,10 +1,7 @@
 package cz.levinzonr.spotie.injection
 
 import cz.levinzonr.spotie.data.ModelAppRepository
-import cz.levinzonr.spotie.data.repository.AuthRepositoryImpl
-import cz.levinzonr.spotie.data.repository.TokenRepositoryImpl
-import cz.levinzonr.spotie.data.repository.TracksRepositoryImpl
-import cz.levinzonr.spotie.data.repository.UserRepositoryImpl
+import cz.levinzonr.spotie.data.repository.*
 import cz.levinzonr.spotie.domain.repositories.*
 import dagger.Binds
 import dagger.Module
@@ -35,4 +32,8 @@ interface RepositoryModule {
     @Binds
     @Singleton
     fun tracksRepository(repository: TracksRepositoryImpl): TracksRepository
+
+    @Binds
+    @Singleton
+    fun bindFeatuersRepo(repository: TrackFeaturesRepositoryImpl): TrackFeaturesRepository
 }

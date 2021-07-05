@@ -52,7 +52,7 @@ class MainActivity : ComponentActivity() {
                         composable(Routes.tracks) {
                             TopTracksScreen(hiltViewModel()) {
                                 Timber.d("On Track: $it")
-                                navController.navigate(RoutesActions.toTrackDetails(it.title))
+                                navController.navigate(RoutesActions.toTrackDetails(it.id))
                             }
                         }
 

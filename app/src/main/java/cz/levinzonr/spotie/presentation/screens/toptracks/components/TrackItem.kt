@@ -43,5 +43,5 @@ fun TrackItem(modifier: Modifier = Modifier, track: Track, onClick: UnitAction =
 fun PreviewTrackItem() {
     val url =
         "https://i.ytimg.com/an_webp/bC06Zt_WaM4/mqdefault_6s.webp?du=3000&sqp=CMa2wYYG&rs=AOn4CLBLff7_aVDhluxRDCHUz2XS4HOC6g"
-    TrackItem(track = Track("Title", url, "Artist Name"))
+    TrackItem(track = Track("Title", url, "Artist Name", "id"))
 }

@@ -37,7 +37,7 @@ fun TracksCarousel(tracks: List<Track>, title: String, modifier: Modifier = Modi
 fun PreviewTracksCarousel() {
     val url = "https://i.ytimg.com/an_webp/bC06Zt_WaM4/mqdefault_6s.webp?du=3000&sqp=CMa2wYYG&rs=AOn4CLBLff7_aVDhluxRDCHUz2XS4HOC6g"
     val items = List(3) {
-        Track("title", url, "Aritst: $it")
+        Track("title", url, "Aritst: $it", "id")
     }
     TracksCarousel(tracks = items, title = "Top Tracks") {
     }
