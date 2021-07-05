@@ -33,7 +33,7 @@ fun HomeScreen(
                 painter = rememberGlidePainter(
                     state.user?.imageUrl,
                     requestBuilder = {
-                        transform(CircleCrop( ))
+                        transform(CircleCrop())
                     }
                 ),
                 contentDescription = "avatar"

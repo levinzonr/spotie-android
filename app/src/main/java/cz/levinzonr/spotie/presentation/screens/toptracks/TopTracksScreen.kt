@@ -28,13 +28,13 @@ fun TopTracksScreen(viewModel: TopTracksViewModel = viewModel(), onTrackClicked:
             is State.Idle, State.Loading -> CircularProgressIndicator()
             is State.ShowContent -> {
                 Column {
-                    
+
                     Text(
                         text = "Your top tracks",
                         style = MaterialTheme.typography.h3,
                         modifier = Modifier.padding(16.dp)
                     )
-                    
+
                     TracksCarousel(
                         tracks = state.topTracks.shortTerm,
                         title = "_First",
@@ -51,7 +51,6 @@ fun TopTracksScreen(viewModel: TopTracksViewModel = viewModel(), onTrackClicked:
 
                     Spacer(modifier = Modifier.size(16.dp))
 
-
                     TracksCarousel(
                         tracks = state.topTracks.longTerm,
                         title = "Last",
@@ -67,6 +66,5 @@ fun TopTracksScreen(viewModel: TopTracksViewModel = viewModel(), onTrackClicked:
 @Composable
 fun PreviewTopScreen() {
     TopTracksScreen() {
-        
     }
 }

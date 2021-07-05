@@ -47,7 +47,6 @@ fun LoginScreen(onHandleLoginEvent: () -> Unit) {
                         }
                     }
                 }
-
             }
             Spacer(modifier = Modifier.padding(23.dp))
             PageController(pagerState = state)
