@@ -12,8 +12,8 @@ import androidx.compose.runtime.getValue
 import androidx.compose.ui.tooling.preview.Devices
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.lifecycle.viewmodel.compose.viewModel
-import coil.transform.CircleCropTransformation
-import com.google.accompanist.coil.rememberCoilPainter
+import com.bumptech.glide.load.resource.bitmap.CircleCrop
+import com.google.accompanist.glide.rememberGlidePainter
 import cz.levinzonr.router.core.Route
 import cz.levinzonr.spotie.presentation.theme.AppTheme
 import cz.levinzonr.spotie.presentation.utils.NavigationAction
@@ -30,10 +30,10 @@ fun HomeScreen(
     } else {
         Column {
             Image(
-                painter = rememberCoilPainter(
+                painter = rememberGlidePainter(
                     state.user?.imageUrl,
                     requestBuilder = {
-                        transformations(CircleCropTransformation())
+                        transform(CircleCrop( ))
                     }
                 ),
                 contentDescription = "avatar"

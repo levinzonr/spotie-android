@@ -29,8 +29,8 @@ object Dependencies {
     }
 
     object Accompanist {
-        private const val version = "0.11.0"
-        const val coil = "com.google.accompanist:accompanist-coil:$version"
+        private const val version = "0.13.0"
+        const val coil = "com.google.accompanist:accompanist-glide:$version"
         const val windowInsets = "com.google.accompanist:accompanist-insets:$version"
         const val placeholder = "com.google.accompanist:accompanist-placeholder$version"
         const val flexLayout = "com.google.accompanist:accompanist-flowlayout:$version"
@@ -59,7 +59,7 @@ object Dependencies {
     }
 
     object Compose {
-        const val version = "1.0.0-beta08"
+        const val version = "1.0.0-rc01"
         const val ui = "androidx.compose.ui:ui:${Dependencies.Compose.version}"
         const val material = "androidx.compose.material:material:$version"
         const val tooling = "androidx.compose.ui:ui-tooling:${Dependencies.Compose.version}"
