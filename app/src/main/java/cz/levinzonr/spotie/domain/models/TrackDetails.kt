@@ -1,6 +1,6 @@
 package cz.levinzonr.spotie.domain.models
 
-class TrackDetails(
+data class TrackDetails(
     val track: Track,
     val features: TrackFeatures
 )

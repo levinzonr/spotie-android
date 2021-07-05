@@ -17,6 +17,6 @@ class TracksRepositoryImpl @Inject constructor(
     }
 
     override suspend fun getTrackDetails(id: String): Track {
-        return Track("", "", "", "id")
+        return api.getTrackDetails(id).let(TracksResponseMapper::toDomain)
     }
 }
