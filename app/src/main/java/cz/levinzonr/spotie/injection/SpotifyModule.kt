@@ -1,5 +1,6 @@
 package cz.levinzonr.spotie.injection
 
+import com.spotify.android.appremote.api.ConnectionParams
 import com.spotify.sdk.android.auth.AuthorizationRequest
 import com.spotify.sdk.android.auth.AuthorizationResponse
 import cz.levinzonr.spotie.BuildConfig
@@ -20,6 +21,14 @@ object SpotifyModule {
             redirectUri = BuildConfig.REDIRECT_URI,
             clientSecret = BuildConfig.CLIENT_SECRET
         )
+    }
+
+    @Provides
+    fun provideConnectionParams(credentials: SpotifyCredentials) : ConnectionParams {
+        return ConnectionParams.Builder(credentials.clientId)
+            .setRedirectUri(credentials.redirectUri)
+            .showAuthView(false)
+            .build()
     }
 
     @Provides

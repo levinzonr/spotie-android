@@ -31,7 +31,7 @@ android {
     defaultConfig {
         versionCode = 1
         versionName = "0.0.1"
-        applicationId = "cz.levinzonr.spotifaves"
+        applicationId = "cz.levinzonr.spotie"
 
         minSdk = BuildConfig.minSdk
         targetSdk = BuildConfig.targetSdk
@@ -116,6 +116,8 @@ dependencies {
     implementation(Dependencies.Accompanist.pager)
 
     implementation(Dependencies.spotifyAuth)
+    implementation(project(":spotify-remote"))
+    implementation("com.google.code.gson:gson:2.8.7")
 
 
     implementation(Dependencies.Navigation.compose)

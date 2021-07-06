@@ -18,10 +18,11 @@ import javax.inject.Inject
 
 @HiltViewModel
 class TrackDetailsViewModel @Inject constructor(
-    private val savedStateHandle: SavedStateHandle,
+    savedStateHandle: SavedStateHandle,
     private val getTrackDetailsUseCase: GetTrackDetailsUseCase
 ) : RoxieViewModel<Action, State, Change>() {
 
+    private val trackId = TrackDetailsRouteArgs.fromSavedStatedHandle(savedStateHandle).trackId
 
     override val initialState: State = State.Idle
 
@@ -34,7 +35,7 @@ class TrackDetailsViewModel @Inject constructor(
 
     init {
         startActionsObserver()
-        dispatch(Action.Init(TrackDetailsRouteArgs.fromSavedStatedHandle(savedStateHandle).trackId))
+        dispatch(Action.Init(trackId))
     }
 
     override fun emitAction(action: Action): Flow<Change> {

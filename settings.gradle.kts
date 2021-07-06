@@ -10,3 +10,4 @@ dependencyResolutionManagement {
 }
 rootProject.name = "cz.levinzonr.spotie"
 include(":app")
+include("spotify-remote")
