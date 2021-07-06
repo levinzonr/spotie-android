@@ -9,7 +9,7 @@ import cz.levinzonr.spotie.domain.models.TrackDetails
 sealed interface State: BaseState {
     object Idle: State
     object Loading: State
-    data class Loaded(val track: TrackDetails): State
+    data class Loaded(val details: TrackDetails): State
 }
 
 

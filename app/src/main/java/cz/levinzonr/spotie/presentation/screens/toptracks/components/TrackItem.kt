@@ -14,6 +14,7 @@ import androidx.compose.ui.unit.dp
 import com.bumptech.glide.load.resource.bitmap.RoundedCorners
 import com.google.accompanist.glide.rememberGlidePainter
 import cz.levinzonr.spotie.domain.models.Track
+import cz.levinzonr.spotie.presentation.theme.AppTheme
 import cz.levinzonr.spotie.presentation.utils.UnitAction
 
 @Composable
@@ -41,7 +42,7 @@ fun TrackItem(modifier: Modifier = Modifier, track: Track, onClick: UnitAction =
 @Preview(showBackground = true)
 @Composable
 fun PreviewTrackItem() {
-    val url =
-        "https://i.ytimg.com/an_webp/bC06Zt_WaM4/mqdefault_6s.webp?du=3000&sqp=CMa2wYYG&rs=AOn4CLBLff7_aVDhluxRDCHUz2XS4HOC6g"
-    TrackItem(track = Track("Title", url, "Artist Name", "id"))
+    AppTheme {
+        TrackItem(track = Track())
+    }
 }
