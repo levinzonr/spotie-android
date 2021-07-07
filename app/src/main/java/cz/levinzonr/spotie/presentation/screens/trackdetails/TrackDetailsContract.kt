@@ -5,17 +5,15 @@ import cz.levinzonr.roxie.BaseChange
 import cz.levinzonr.roxie.BaseState
 import cz.levinzonr.spotie.domain.models.TrackDetails
 
-
-sealed interface State: BaseState {
-    object Idle: State
-    object Loading: State
-    data class Loaded(val details: TrackDetails): State
+sealed interface State : BaseState {
+    object Idle : State
+    object Loading : State
+    data class Loaded(val details: TrackDetails) : State
 }
 
-
-sealed interface Change: BaseChange{
+sealed interface Change : BaseChange {
     data class Loaded(val track: TrackDetails) : Change
-    object LoadStarted: Change
+    object LoadStarted : Change
 }
 
 sealed interface Action : BaseAction {

@@ -17,7 +17,6 @@ import androidx.compose.ui.unit.dp
 import androidx.lifecycle.viewmodel.compose.viewModel
 import cz.levinzonr.router.core.Route
 import cz.levinzonr.spotie.domain.models.Track
-import cz.levinzonr.spotie.presentation.screens.player.PlayerComponent
 import cz.levinzonr.spotie.presentation.screens.toptracks.components.TracksCarousel
 
 @Composable

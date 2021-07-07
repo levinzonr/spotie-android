@@ -33,16 +33,19 @@ class SpotifyPlayerManager @Inject constructor(
     }
 
     override fun connect() {
-        SpotifyAppRemote.connect(context, params, object : Connector.ConnectionListener {
-            override fun onConnected(spotifyAppRemote: SpotifyAppRemote?) {
-                remote = spotifyAppRemote
-                remote?.let { init(it.playerApi) }
-            }
+        SpotifyAppRemote.connect(
+            context, params,
+            object : Connector.ConnectionListener {
+                override fun onConnected(spotifyAppRemote: SpotifyAppRemote?) {
+                    remote = spotifyAppRemote
+                    remote?.let { init(it.playerApi) }
+                }
 
-            override fun onFailure(error: Throwable?) {
-                stateFlow.tryEmit(PlayerState.Error(error ?: Throwable()))
+                override fun onFailure(error: Throwable?) {
+                    stateFlow.tryEmit(PlayerState.Error(error ?: Throwable()))
+                }
             }
-        })
+        )
     }
 
     override fun disconnect() {
@@ -58,7 +61,6 @@ class SpotifyPlayerManager @Inject constructor(
             .catch { stateFlow.emit(PlayerState.Error(it)) }
             .launchIn(GlobalScope)
     }
-
 
     override suspend fun play(trackId: String) {
         withPlayerApi {
@@ -100,6 +102,4 @@ class SpotifyPlayerManager @Inject constructor(
     override suspend fun shuffle(shuffle: Boolean) {
         withPlayerApi { setShuffle(shuffle) }
     }
-
-
 }

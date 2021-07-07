@@ -24,7 +24,7 @@ object SpotifyModule {
     }
 
     @Provides
-    fun provideConnectionParams(credentials: SpotifyCredentials) : ConnectionParams {
+    fun provideConnectionParams(credentials: SpotifyCredentials): ConnectionParams {
         return ConnectionParams.Builder(credentials.clientId)
             .setRedirectUri(credentials.redirectUri)
             .showAuthView(false)

@@ -35,7 +35,6 @@ class TopTracksViewModel @Inject constructor(
             .onEach { Timber.d("State: $it") }
             .flowOn(Dispatchers.IO)
             .launchIn(viewModelScope)
-
     }
 
     override fun emitAction(action: Action): Flow<Change> {

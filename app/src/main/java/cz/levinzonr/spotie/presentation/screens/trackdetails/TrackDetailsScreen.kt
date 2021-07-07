@@ -17,8 +17,6 @@ import androidx.lifecycle.viewmodel.compose.viewModel
 import cz.levinzonr.router.core.Route
 import cz.levinzonr.router.core.RouteArg
 import cz.levinzonr.router.core.RouteArgType
-import cz.levinzonr.spotie.domain.models.TrackDetails
-import cz.levinzonr.spotie.domain.models.TrackFeatures
 import cz.levinzonr.spotie.presentation.screens.trackdetails.components.TrackFeaturesSection
 import cz.levinzonr.spotie.presentation.screens.trackdetails.components.TrackHeader
 
@@ -26,7 +24,7 @@ import cz.levinzonr.spotie.presentation.screens.trackdetails.components.TrackHea
 @Composable
 fun TrackDetailsScreen(viewModel: TrackDetailsViewModel = hiltViewModel()) {
     val state by viewModel.stateFlow.collectAsState(initial = State.Idle)
-    when(val state = state) {
+    when (val state = state) {
         is State.Idle, is State.Loading -> {
             CircularProgressIndicator()
         }
@@ -41,8 +39,6 @@ fun TrackDetailsScreen(viewModel: TrackDetailsViewModel = hiltViewModel()) {
                     )
                 }
             }
-
-
         }
     }
 }

@@ -9,7 +9,7 @@ class GetTrackDetailsUseCase @Inject constructor(
     private val repository: TracksRepository,
     private val featuresRepository: TrackFeaturesRepository,
 ) {
-    suspend fun getTrackDetails(id: String) : UseCaseResult<TrackDetails> = safeUseCaseCall {
+    suspend fun getTrackDetails(id: String): UseCaseResult<TrackDetails> = safeUseCaseCall {
         val track = repository.getTrackDetails(id)
         val features = featuresRepository.getTrackFeatures(id)
         TrackDetails(track, features)

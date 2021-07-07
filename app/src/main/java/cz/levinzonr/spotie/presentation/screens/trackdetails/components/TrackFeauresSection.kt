@@ -28,5 +28,5 @@ private fun Double.toPercentageString() = "${(this * 100).roundToInt()} %"
 @Preview
 @Composable
 fun PReviewTrackFeatures() {
-   TrackFeaturesSection(features = TrackFeatures())
+    TrackFeaturesSection(features = TrackFeatures())
 }

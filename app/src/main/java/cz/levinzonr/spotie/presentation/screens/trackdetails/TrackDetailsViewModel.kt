@@ -1,8 +1,6 @@
 package cz.levinzonr.spotie.presentation.screens.trackdetails
 
 import androidx.lifecycle.SavedStateHandle
-import androidx.lifecycle.ViewModel
-import androidx.lifecycle.viewModelScope
 import cz.levinzonr.roxie.RoxieViewModel
 import cz.levinzonr.spotie.domain.usecases.GetTrackDetailsUseCase
 import cz.levinzonr.spotie.domain.usecases.ifError
@@ -10,9 +8,7 @@ import cz.levinzonr.spotie.domain.usecases.ifSuccess
 import cz.levinzonr.spotie.presentation.screens.trackdetails.args.TrackDetailsRouteArgs
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.Flow
-import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.flow
-import kotlinx.coroutines.launch
 import timber.log.Timber
 import javax.inject.Inject
 
@@ -39,17 +35,15 @@ class TrackDetailsViewModel @Inject constructor(
     }
 
     override fun emitAction(action: Action): Flow<Change> {
-        return when(action) {
+        return when (action) {
             is Action.Init -> action.bind()
         }
     }
 
-
-    private fun Action.Init.bind() : Flow<Change> = flow {
+    private fun Action.Init.bind(): Flow<Change> = flow {
         emit(Change.LoadStarted)
         getTrackDetailsUseCase.getTrackDetails(id)
             .ifSuccess { emit(Change.Loaded(it)) }
             .ifError { Timber.e(it) }
     }
-
 }

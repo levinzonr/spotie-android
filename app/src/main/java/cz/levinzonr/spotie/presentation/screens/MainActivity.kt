@@ -54,11 +54,11 @@ class MainActivity : ComponentActivity() {
                 val viewState by viewModel.stateFlow.collectAsState(initial = State())
                 if (viewState.isLoggedIn) {
 
-
-                    Scaffold(bottomBar = {
-                        AppBottomNav(items = listOf(MenuItem.Home, MenuItem.Profile), navController = navController)
-
-                    }) {
+                    Scaffold(
+                        bottomBar = {
+                            AppBottomNav(items = listOf(MenuItem.Home, MenuItem.Profile), navController = navController)
+                        }
+                    ) {
                         NavHost(navController = navController, startDestination = MenuItem.Home.route) {
                             navigation(Routes.tracks.path, MenuItem.Home.route) {
                                 composable(Routes.tracks) {
@@ -80,8 +80,6 @@ class MainActivity : ComponentActivity() {
                             }
                         }
                     }
-
-
                 } else {
                     LoginScreen(
                         onHandleLoginEvent = {

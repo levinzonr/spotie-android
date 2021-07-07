@@ -8,7 +8,6 @@ import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.callbackFlow
 import timber.log.Timber
 
-
 fun PlayerApi.stateFlow(): Flow<PlayerState> = callbackFlow {
     val eventSub = subscribeToPlayerState().setEventCallback {
         trySend(it)
@@ -24,8 +23,7 @@ fun PlayerApi.stateFlow(): Flow<PlayerState> = callbackFlow {
     }
 }
 
-
-fun CallResult<*>.awaitAndValidate() : Boolean {
+fun CallResult<*>.awaitAndValidate(): Boolean {
     val result = await()
     return when {
         result.isSuccessful && result.data != null -> true

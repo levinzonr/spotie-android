@@ -6,7 +6,7 @@ import javax.inject.Inject
 
 class PlayNextUseCase @Inject constructor(
     private val playerManager: PlayerManager
-){
+) {
     suspend fun next() = safeUseCaseCall {
         playerManager.next()
     }

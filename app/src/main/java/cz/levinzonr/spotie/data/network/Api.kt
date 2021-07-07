@@ -20,5 +20,5 @@ interface Api {
     suspend fun getTrackDetails(@Path("id") trackId: String): TrackResponse
 
     @GET("v1/audio-features/{id}")
-    suspend fun getAudioFeatures(@Path("id") trackId: String) : TrackFeaturesResponse
+    suspend fun getAudioFeatures(@Path("id") trackId: String): TrackFeaturesResponse
 }

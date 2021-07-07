@@ -12,5 +12,5 @@ import dagger.hilt.components.SingletonComponent
 interface ManagerModule {
 
     @Binds
-    fun bindPlayerManager(spotifyPlayerManager: SpotifyPlayerManager) : PlayerManager
+    fun bindPlayerManager(spotifyPlayerManager: SpotifyPlayerManager): PlayerManager
 }

@@ -21,7 +21,7 @@ class PlayerViewModel @Inject constructor(
     private val getPlayerStateUseCase: PlayerStateUseCase
 ) : ViewModel() {
 
-    val stateFlow : Flow<PlayerState> get() = playerStateFlow
+    val stateFlow: Flow<PlayerState> get() = playerStateFlow
     private val playerStateFlow = getPlayerStateUseCase.getPlayerState()
 
     init {
@@ -29,7 +29,7 @@ class PlayerViewModel @Inject constructor(
     }
 
     fun dispatch(action: PlayerAction) = viewModelScope.launch {
-        when(action) {
+        when (action) {
             is PlayerAction.Next -> playNextUseCase.next()
             is PlayerAction.Previous -> playPreviousUseCase.previous()
             is PlayerAction.Toggle -> togglePlaybackUseCase.toggle()
