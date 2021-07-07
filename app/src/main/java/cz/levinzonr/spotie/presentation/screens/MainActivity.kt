@@ -5,6 +5,7 @@ import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.activity.viewModels
+import androidx.compose.material.Scaffold
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.hilt.navigation.compose.hiltViewModel
@@ -12,10 +13,14 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
+import androidx.navigation.navigation
 import com.google.accompanist.pager.ExperimentalPagerApi
 import com.spotify.sdk.android.auth.AuthorizationClient
 import com.spotify.sdk.android.auth.AuthorizationRequest
+import cz.levinzonr.spotie.presentation.components.AppBottomNav
 import cz.levinzonr.spotie.presentation.extenstions.composable
+import cz.levinzonr.spotie.presentation.navigation.MenuItem
+import cz.levinzonr.spotie.presentation.screens.home.HomeScreen
 import cz.levinzonr.spotie.presentation.screens.login.LoginScreen
 import cz.levinzonr.spotie.presentation.screens.toptracks.TopTracksScreen
 import cz.levinzonr.spotie.presentation.screens.trackdetails.Routes
@@ -48,18 +53,35 @@ class MainActivity : ComponentActivity() {
                 Timber.d("State : ${state?.destination?.route}")
                 val viewState by viewModel.stateFlow.collectAsState(initial = State())
                 if (viewState.isLoggedIn) {
-                    NavHost(navController = navController, startDestination = Routes.tracks.path) {
-                        composable(Routes.tracks) {
-                            TopTracksScreen(hiltViewModel()) {
-                                Timber.d("On Track: $it")
-                                navController.navigate(RoutesActions.toTrackDetails(it.id))
+
+
+                    Scaffold(bottomBar = {
+                        AppBottomNav(items = listOf(MenuItem.Home, MenuItem.Profile), navController = navController)
+
+                    }) {
+                        NavHost(navController = navController, startDestination = MenuItem.Home.route) {
+                            navigation(Routes.tracks.path, MenuItem.Home.route) {
+                                composable(Routes.tracks) {
+                                    TopTracksScreen(hiltViewModel()) {
+                                        Timber.d("On Track: $it")
+                                        navController.navigate(RoutesActions.toTrackDetails(it.id))
+                                    }
+                                }
+
+                                composable(Routes.trackDetails) {
+                                    TrackDetailsScreen(hiltViewModel())
+                                }
+                            }
+
+                            navigation(Routes.home.path, MenuItem.Profile.route) {
+                                composable(Routes.home) {
+                                    HomeScreen(hiltViewModel())
+                                }
                             }
                         }
-
-                        composable(Routes.trackDetails) {
-                            TrackDetailsScreen(hiltViewModel())
-                        }
                     }
+
+
                 } else {
                     LoginScreen(
                         onHandleLoginEvent = {

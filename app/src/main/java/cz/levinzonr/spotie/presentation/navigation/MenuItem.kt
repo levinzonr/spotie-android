@@ -9,6 +9,5 @@ import cz.levinzonr.spotie.presentation.screens.trackdetails.Routes
 
 sealed class MenuItem(val route: String, val icon: ImageVector) {
     object Home : MenuItem("home-flow", Icons.Rounded.Home)
-    object Settings : MenuItem(Routes.settings.path, Icons.Rounded.Settings)
-    object Temp : MenuItem("temp", Icons.Rounded.Share)
+    object Profile : MenuItem("profile-flow", Icons.Rounded.Settings)
 }
