@@ -16,7 +16,7 @@ fun Project.createPropertiesFrom(filename: String) : Properties {
 }
 
 val spotifyProps = createPropertiesFrom("spotify.properties")
-
+val keysProps = createPropertiesFrom("keys.properties")
 
 
 
@@ -53,12 +53,13 @@ android {
     productFlavors {
         create(Flavours.production) {
             dimension = Dimensions.environment
-
             buildConfigString("CLIENT_ID",spotifyProps.getProperty("client_id"))
             buildConfigString("CLIENT_SECRET", spotifyProps.getProperty("client_secret"))
             buildConfigString("REDIRECT_URI", spotifyProps.getProperty("redirect_uri"))
             buildConfigString("API_URL", "https://api.spotify.com/")
             buildConfigString("API_AUTH_URL", "https://accounts.spotify.com/")
+            buildConfigString("LYRICS_API_KEY", keysProps.getProperty("API_KEY"))
+            buildConfigString("LYRICS_BASE_URL", "https://api.happi.dev/")
         }
         create(Flavours.staging) {
             applicationIdSuffix = ".staging"

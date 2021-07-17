@@ -3,6 +3,7 @@
 *.ap_
 
 spotify.properties
+keys.properties
 
 # Mac files
 .DS_Store

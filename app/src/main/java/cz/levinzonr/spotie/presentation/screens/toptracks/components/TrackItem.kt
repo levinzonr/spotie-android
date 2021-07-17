@@ -2,13 +2,13 @@ package cz.levinzonr.spotie.presentation.screens.toptracks.components
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.clickable
-import androidx.compose.foundation.layout.Arrangement
-import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.layout.*
+import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.bumptech.glide.load.resource.bitmap.RoundedCorners
@@ -20,12 +20,14 @@ import cz.levinzonr.spotie.presentation.utils.UnitAction
 @Composable
 fun TrackItem(modifier: Modifier = Modifier, track: Track, onClick: UnitAction = {}) {
     Column(
-        modifier = modifier.clickable { onClick.invoke() },
+        modifier = modifier
+            .size(120.dp)
+            .clickable { onClick.invoke() },
         verticalArrangement = Arrangement.Center,
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
         Image(
-            modifier = Modifier.size(100.dp),
+            modifier = Modifier.weight(9f),
             painter = rememberGlidePainter(
                 request = track.imageUrl,
                 requestBuilder = {
@@ -34,8 +36,16 @@ fun TrackItem(modifier: Modifier = Modifier, track: Track, onClick: UnitAction =
             ),
             contentDescription = "track_image"
         )
-        Text(text = track.artistName)
-        Text(text = track.title)
+        Text(
+            text = track.artistName,
+            style = MaterialTheme.typography.caption,
+            modifier = Modifier.weight(2f).padding(top = 4.dp)
+        )
+        Text(
+            text = track.title,
+            style = MaterialTheme.typography.caption.copy(fontWeight = FontWeight.Bold),
+            modifier = Modifier.weight(2f)
+        )
     }
 }
 

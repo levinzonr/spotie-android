@@ -2,10 +2,7 @@ package cz.levinzonr.spotie.injection
 
 import com.jakewharton.retrofit2.converter.kotlinx.serialization.asConverterFactory
 import cz.levinzonr.spotie.BuildConfig
-import cz.levinzonr.spotie.data.network.Api
-import cz.levinzonr.spotie.data.network.AppAuthenticator
-import cz.levinzonr.spotie.data.network.AuthApi
-import cz.levinzonr.spotie.data.network.AuthTokenInterceptor
+import cz.levinzonr.spotie.data.network.*
 import cz.levinzonr.spotie.domain.repositories.TokenRepository
 import cz.levinzonr.spotie.domain.usecases.RefreshTokenUseCase
 import dagger.Module
@@ -28,9 +25,11 @@ object NetworkModule {
 
     private const val CLIENT_API = "client_api"
     private const val CLIENT_AUTH = "client_auth"
+    private const val CLIENT_LYRICS = "lyrics_api"
 
     private const val RETROFIT_API = "retrofit_api"
     private const val RETROFIT_AUTH = "retrofit_auth"
+    private const val RETROFIT_LYRICS = "retrofit_lytics"
 
     @Provides
     fun provideConverter(): Converter.Factory {
@@ -84,6 +83,24 @@ object NetworkModule {
 
     @Provides
     @Singleton
+    @Named(CLIENT_LYRICS)
+    fun provideLyricsHttpClient() : OkHttpClient {
+        val clientBuilder = OkHttpClient.Builder()
+            .connectTimeout(45, TimeUnit.SECONDS)
+            .readTimeout(60, TimeUnit.SECONDS)
+            .writeTimeout(60, TimeUnit.SECONDS)
+
+        if (BuildConfig.DEBUG) {
+            val logging = HttpLoggingInterceptor()
+            logging.level = HttpLoggingInterceptor.Level.BODY
+            clientBuilder.addInterceptor(logging)
+        }
+
+        return clientBuilder.build()
+    }
+
+    @Provides
+    @Singleton
     @Named(RETROFIT_API)
     fun provideRetrofit(
         @Named(CLIENT_API) client: OkHttpClient,
@@ -110,6 +127,18 @@ object NetworkModule {
             .build()
     }
 
+
+    @Provides
+    @Singleton
+    @Named(RETROFIT_LYRICS)
+    fun provideLyricsRetrofit(@Named(CLIENT_LYRICS) client: OkHttpClient, converterFactory: Converter.Factory) : Retrofit {
+        return Retrofit.Builder()
+            .client(client)
+            .baseUrl(BuildConfig.LYRICS_BASE_URL)
+            .addConverterFactory(converterFactory)
+            .build()
+    }
+
     @Provides
     @Singleton
     fun provideApi(@Named(RETROFIT_API) retrofit: Retrofit): Api {
@@ -120,5 +149,11 @@ object NetworkModule {
     @Singleton
     fun provideAuthApi(@Named(RETROFIT_AUTH) retrofit: Retrofit): AuthApi {
         return retrofit.create(AuthApi::class.java)
+    }
+
+    @Provides
+    @Singleton
+    fun provideLyricsApi(@Named(RETROFIT_LYRICS) retrofit: Retrofit) : LyricsApi {
+        return retrofit.create(LyricsApi::class.java)
     }
 }
