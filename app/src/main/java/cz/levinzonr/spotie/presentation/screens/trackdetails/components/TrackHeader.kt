@@ -1,5 +1,6 @@
 package cz.levinzonr.spotie.presentation.screens.trackdetails.components
 
+import android.content.res.Configuration.UI_MODE_NIGHT_NO
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
@@ -16,6 +17,7 @@ import com.google.accompanist.glide.rememberGlidePainter
 import cz.levinzonr.spotie.domain.models.Track
 import cz.levinzonr.spotie.presentation.extenstions.gradientBackground
 import cz.levinzonr.spotie.presentation.theme.AppTheme
+import timber.log.Timber
 
 @Composable
 fun TrackHeader(modifier: Modifier = Modifier, track: Track) {
@@ -48,12 +50,10 @@ fun TrackHeader(modifier: Modifier = Modifier, track: Track) {
             Text(
                 text = track.title,
                 style = MaterialTheme.typography.h6,
-                color = MaterialTheme.colors.onBackground,
             )
             Text(
                 text = "By ${track.artistName}",
                 style = MaterialTheme.typography.subtitle1,
-                color = MaterialTheme.colors.onBackground,
             )
         }
     }
@@ -62,7 +62,7 @@ fun TrackHeader(modifier: Modifier = Modifier, track: Track) {
 @Preview
 @Composable
 fun TrackHeaderPreview() {
-    AppTheme {
+    AppTheme(darkTheme = false) {
         TrackHeader(modifier = Modifier.fillMaxWidth(), track = Track())
     }
 }

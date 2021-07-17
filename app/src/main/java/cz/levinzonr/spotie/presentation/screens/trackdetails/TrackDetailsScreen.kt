@@ -19,6 +19,8 @@ import cz.levinzonr.router.core.RouteArg
 import cz.levinzonr.router.core.RouteArgType
 import cz.levinzonr.spotie.presentation.screens.trackdetails.components.TrackFeaturesSection
 import cz.levinzonr.spotie.presentation.screens.trackdetails.components.TrackHeader
+import cz.levinzonr.spotie.R
+import cz.levinzonr.spotie.presentation.screens.trackdetails.components.TrackControls
 
 @Route(name = "trackDetails", args = [RouteArg("trackId", type = RouteArgType.StringType)])
 @Composable
@@ -32,11 +34,19 @@ fun TrackDetailsScreen(viewModel: TrackDetailsViewModel = hiltViewModel()) {
             Scaffold {
                 Column {
                     TrackHeader(track = state.details.track)
+
                     Spacer(modifier = Modifier.size(16.dp))
+
+                    TrackControls(isPlaying = state.isPlaying, onActionButtonPressed = {
+                        viewModel.dispatch(Action.TogglePlaybackPressed)
+                    })
+
                     TrackFeaturesSection(
                         modifier = Modifier.padding(horizontal = 16.dp),
                         features = state.details.features
                     )
+
+
                 }
             }
         }
@@ -46,5 +56,5 @@ fun TrackDetailsScreen(viewModel: TrackDetailsViewModel = hiltViewModel()) {
 @Preview
 @Composable
 fun TrackDetailsScrennPreview() {
-    TrackDetailsScreen(viewModel())
+    TrackDetailsScreen()
 }

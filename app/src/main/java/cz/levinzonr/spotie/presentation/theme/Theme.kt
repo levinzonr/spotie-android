@@ -36,7 +36,7 @@ fun AppTheme(
     content: @Composable() () -> Unit
 ) {
 
-    val colors = if (darkTheme) DarkColorsPalette else LightColorPalette
+    val colors = if (darkTheme) LightColorPalette else LightColorPalette
 
     MaterialTheme(
         colors = colors,

@@ -40,7 +40,7 @@ fun AppButton(
             modifier = modifier,
             enabled = enabled
         ) {
-            AppButtonContent(text = text, icon = icon)
+            AppButtonContent(text = text, icon = icon, color = MaterialTheme.colors.onPrimary)
         }
         AppButtonType.Outlined -> OutlinedButton(
             onClick = onClick,
@@ -48,7 +48,7 @@ fun AppButton(
             modifier = modifier,
             enabled = enabled
         ) {
-            AppButtonContent(text = text, icon = icon)
+            AppButtonContent(text = text, icon = icon, color = MaterialTheme.colors.primary)
         }
 
         AppButtonType.Text -> {
@@ -57,7 +57,7 @@ fun AppButton(
                 modifier = modifier,
                 enabled = enabled,
             ) {
-                AppButtonContent(text = text, icon = icon)
+                AppButtonContent(text = text, icon = icon, color = MaterialTheme.colors.primary)
             }
         }
     }
@@ -75,7 +75,12 @@ private fun GradientStroke(width: Dp, colors: List<Color>): BorderStroke {
 }
 
 @Composable
-private fun AppButtonContent(modifier: Modifier = Modifier, text: String, icon: Painter?) {
+private fun AppButtonContent(
+    modifier: Modifier = Modifier,
+    text: String,
+    icon: Painter?,
+    color: Color = MaterialTheme.colors.onSurface
+) {
     Row(modifier = modifier.padding(horizontal = 24.dp, vertical = 8.dp)) {
         icon?.let {
             Image(
@@ -89,7 +94,7 @@ private fun AppButtonContent(modifier: Modifier = Modifier, text: String, icon: 
         Text(
             text = text,
             style = MaterialTheme.typography.button,
-            color = MaterialTheme.colors.onSurface
+            color = color
         )
     }
 }
