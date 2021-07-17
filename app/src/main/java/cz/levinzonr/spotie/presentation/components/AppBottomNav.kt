@@ -28,7 +28,7 @@ fun AppBottomNav(items: List<MenuItem>, navController: NavHostController) {
                     navController.navigate(screen.route) {
                         launchSingleTop = true
                         restoreState = true
-                        popUpTo(Routes.home.path) {
+                        popUpTo(Routes.tracks.path) {
                             saveState = true
                         }
                     }

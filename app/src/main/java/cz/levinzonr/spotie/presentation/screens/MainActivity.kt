@@ -10,7 +10,6 @@ import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.compose.NavHost
-import androidx.navigation.compose.composable
 import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
 import androidx.navigation.navigation
@@ -20,7 +19,7 @@ import com.spotify.sdk.android.auth.AuthorizationRequest
 import cz.levinzonr.spotie.presentation.components.AppBottomNav
 import cz.levinzonr.spotie.presentation.extenstions.composable
 import cz.levinzonr.spotie.presentation.navigation.MenuItem
-import cz.levinzonr.spotie.presentation.screens.home.HomeScreen
+import cz.levinzonr.spotie.presentation.screens.home.ProfileScreen
 import cz.levinzonr.spotie.presentation.screens.login.LoginScreen
 import cz.levinzonr.spotie.presentation.screens.toptracks.TopTracksScreen
 import cz.levinzonr.spotie.presentation.screens.trackdetails.Routes
@@ -73,9 +72,9 @@ class MainActivity : ComponentActivity() {
                                 }
                             }
 
-                            navigation(Routes.home.path, MenuItem.Profile.route) {
-                                composable(Routes.home) {
-                                    HomeScreen(hiltViewModel())
+                            navigation(Routes.profile.path, MenuItem.Profile.route) {
+                                composable(Routes.profile) {
+                                    ProfileScreen(hiltViewModel())
                                 }
                             }
                         }

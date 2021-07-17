@@ -7,9 +7,9 @@ import com.spotify.protocol.types.Track as SpotifyTrack
 object SpotifyTrackResponseMapper : DtoMapper<SpotifyTrack, Track> {
     override fun toDomain(dto: SpotifyTrack): Track {
         return Track(
-            id = dto.uri,
+            id = dto.uri.split(":").last(),
             title = dto.name,
-            imageUrl = dto.imageUri.raw,
+            imageUrl = null,
             artistName = dto.artist.name
         )
     }

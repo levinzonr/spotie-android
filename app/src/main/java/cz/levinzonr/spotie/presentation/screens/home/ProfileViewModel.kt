@@ -11,7 +11,7 @@ import timber.log.Timber
 import javax.inject.Inject
 
 @HiltViewModel
-class HomeViewModel @Inject constructor(
+class ProfileViewModel @Inject constructor(
     private val getUserUseCase: GetUserUseCase
 ) : RoxieViewModel<Action, State, Change>() {
 

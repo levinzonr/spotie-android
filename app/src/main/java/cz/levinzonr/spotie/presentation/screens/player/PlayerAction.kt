@@ -4,4 +4,5 @@ sealed interface PlayerAction {
     object Toggle : PlayerAction
     object Next : PlayerAction
     object Previous : PlayerAction
+    object Connect: PlayerAction
 }
