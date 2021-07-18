@@ -30,9 +30,9 @@ import timber.log.Timber
 fun PlayerComponent(modifier: Modifier = Modifier, viewModel: PlayerViewModel = hiltViewModel()) {
     val state by viewModel.stateFlow.collectAsState(initial = PlayerState.Idle)
     Timber.d("state : $state")
-    Card(modifier = modifier
+    Box(modifier = modifier
         .fillMaxWidth()
-        .height(100.dp)) {
+        .height(50.dp)) {
         when (val state = state) {
             is PlayerState.Idle -> CircularProgressIndicator()
             is PlayerState.Error -> PlayerError { viewModel.dispatch(PlayerAction.Previous)}

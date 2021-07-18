@@ -5,9 +5,11 @@ import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.activity.viewModels
+import androidx.compose.foundation.layout.padding
 import androidx.compose.material.Scaffold
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
+import androidx.compose.ui.Modifier
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.currentBackStackEntryAsState
@@ -22,6 +24,7 @@ import cz.levinzonr.spotie.presentation.navigation.MenuItem
 import cz.levinzonr.spotie.presentation.screens.home.ProfileScreen
 import cz.levinzonr.spotie.presentation.screens.login.LoginScreen
 import cz.levinzonr.spotie.presentation.screens.newreleases.ReleasesScreen
+import cz.levinzonr.spotie.presentation.screens.player.PlayerComponent
 import cz.levinzonr.spotie.presentation.screens.toptracks.TopTracksScreen
 import cz.levinzonr.spotie.presentation.screens.trackdetails.Routes
 import cz.levinzonr.spotie.presentation.screens.trackdetails.RoutesActions
@@ -56,10 +59,14 @@ class MainActivity : ComponentActivity() {
 
                     Scaffold(
                         bottomBar = {
-                            AppBottomNav(items = listOf(MenuItem.Home, MenuItem.Profile), navController = navController)
+                            PlayerComponent()
                         }
                     ) {
-                        NavHost(navController = navController, startDestination = MenuItem.Home.route) {
+                        NavHost(
+                            navController = navController,
+                            startDestination = MenuItem.Home.route,
+                            modifier = Modifier.padding(it)
+                        ) {
                             navigation(Routes.tracks.path, MenuItem.Home.route) {
                                 composable(Routes.tracks) {
                                    ReleasesScreen()
@@ -67,12 +74,6 @@ class MainActivity : ComponentActivity() {
 
                                 composable(Routes.trackDetails) {
                                     TrackDetailsScreen(hiltViewModel())
-                                }
-                            }
-
-                            navigation(Routes.profile.path, MenuItem.Profile.route) {
-                                composable(Routes.profile) {
-                                    ProfileScreen(hiltViewModel())
                                 }
                             }
                         }
