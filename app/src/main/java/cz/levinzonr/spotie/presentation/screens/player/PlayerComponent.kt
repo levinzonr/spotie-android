@@ -58,7 +58,10 @@ private fun PlayerReady(
     onActionDispatch: (PlayerAction) -> Unit = {}
 ) {
 
-        Row(modifier = Modifier.fillMaxSize()) {
+        Row(
+            modifier = Modifier.fillMaxSize(),
+            verticalAlignment = Alignment.CenterVertically
+        ) {
             Image(
                 modifier = Modifier
                     .fillMaxHeight()
@@ -70,50 +73,59 @@ private fun PlayerReady(
                 contentDescription = track.title,
                 contentScale = ContentScale.FillBounds
             )
+            
+            Spacer(modifier = Modifier.size(12.dp))
+            
             Column(
-                modifier = Modifier.fillMaxSize(),
-                horizontalAlignment = Alignment.CenterHorizontally,
+                horizontalAlignment = Alignment.Start,
                 verticalArrangement = Arrangement.Center
             ) {
                 Text(text = track.artistName, style = MaterialTheme.typography.caption)
                 Text(text = track.title, style = MaterialTheme.typography.caption)
-                Row(
-                    modifier = Modifier.fillMaxWidth(),
-                    horizontalArrangement = Arrangement.SpaceAround
-                ) {
+            }
+            
+            
 
-                    IconButton(onClick = { onActionDispatch.invoke(PlayerAction.Previous) }) {
-                        Icon(
-                            painter = painterResource(id = R.drawable.ic_baseline_skip_previous_24),
-                            contentDescription = ""
-                        )
-                    }
+            Row(
+                modifier = Modifier.fillMaxWidth(),
+                horizontalArrangement = Arrangement.End
+            ) {
+                IconButton(onClick = { onActionDispatch.invoke(PlayerAction.Previous) }) {
+                    Icon(
+                        painter = painterResource(id = R.drawable.ic_baseline_skip_previous_24),
+                        contentDescription = ""
+                    )
+                }
 
-                    IconButton(onClick = { onActionDispatch.invoke(PlayerAction.Toggle) }) {
-                        val iconRes = if (isPlaying) R.drawable.ic_baseline_pause_24 else R.drawable.ic_baseline_play_arrow_24
-                        Icon(
-                            painter = painterResource(id = iconRes),
-                            contentDescription = ""
-                        )
-                    }
-                    IconButton(onClick = { onActionDispatch.invoke(PlayerAction.Next) }) {
-                        Icon(
-                            painter = painterResource(id = R.drawable.ic_baseline_skip_next_24),
-                            contentDescription = ""
-                        )
-                    }
-
+                IconButton(onClick = { onActionDispatch.invoke(PlayerAction.Toggle) }) {
+                    val iconRes = if (isPlaying) R.drawable.ic_baseline_pause_24 else R.drawable.ic_baseline_play_arrow_24
+                    Icon(
+                        painter = painterResource(id = iconRes),
+                        contentDescription = ""
+                    )
+                }
+                IconButton(onClick = { onActionDispatch.invoke(PlayerAction.Next) }) {
+                    Icon(
+                        painter = painterResource(id = R.drawable.ic_baseline_skip_next_24),
+                        contentDescription = ""
+                    )
                 }
             }
+
+
         }
 }
 
 
-@Preview(uiMode = UI_MODE_NIGHT_NO)
+@Preview(uiMode = UI_MODE_NIGHT_NO, showBackground = true)
 @Composable
 fun PreviewPlayerComponent() {
     AppTheme {
-        PlayerReady(Track(), isPlaying = true)
+        Box(modifier = Modifier
+            .fillMaxWidth()
+            .height(50.dp)) {
+            PlayerReady(Track(), isPlaying = true)
 
+        }
     }
 }
