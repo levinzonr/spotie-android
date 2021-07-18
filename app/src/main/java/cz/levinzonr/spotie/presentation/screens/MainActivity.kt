@@ -21,6 +21,7 @@ import cz.levinzonr.spotie.presentation.extenstions.composable
 import cz.levinzonr.spotie.presentation.navigation.MenuItem
 import cz.levinzonr.spotie.presentation.screens.home.ProfileScreen
 import cz.levinzonr.spotie.presentation.screens.login.LoginScreen
+import cz.levinzonr.spotie.presentation.screens.newreleases.ReleasesScreen
 import cz.levinzonr.spotie.presentation.screens.toptracks.TopTracksScreen
 import cz.levinzonr.spotie.presentation.screens.trackdetails.Routes
 import cz.levinzonr.spotie.presentation.screens.trackdetails.RoutesActions
@@ -61,10 +62,7 @@ class MainActivity : ComponentActivity() {
                         NavHost(navController = navController, startDestination = MenuItem.Home.route) {
                             navigation(Routes.tracks.path, MenuItem.Home.route) {
                                 composable(Routes.tracks) {
-                                    TopTracksScreen(hiltViewModel()) {
-                                        Timber.d("On Track: $it")
-                                        navController.navigate(RoutesActions.toTrackDetails(it.id))
-                                    }
+                                   ReleasesScreen()
                                 }
 
                                 composable(Routes.trackDetails) {

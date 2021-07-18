@@ -10,7 +10,8 @@ object TracksResponseMapper : DtoMapper<TrackResponse, Track> {
             id = dto.id,
             title = dto.name,
             imageUrl = dto.album.images.firstOrNull()?.url,
-            artistName = dto.artists.firstOrNull()?.name ?: ""
+            artistName = dto.artists.firstOrNull()?.name ?: "",
+            album = AlbumDtoMapper.toDomain(dto.album)
         )
     }
 }

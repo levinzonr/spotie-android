@@ -19,4 +19,10 @@ class TracksRepositoryImpl @Inject constructor(
     override suspend fun getTrackDetails(id: String): Track {
         return api.getTrackDetails(id).let(TracksResponseMapper::toDomain)
     }
+
+    override suspend fun getTracksFromPlaylist(playlistId: String): List<Track> {
+        return api.getTracksFromPlaylist(playlistId)
+            .items.map { it.track }
+            .mapWith(TracksResponseMapper)
+    }
 }

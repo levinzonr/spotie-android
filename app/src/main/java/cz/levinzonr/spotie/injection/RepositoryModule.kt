@@ -36,4 +36,8 @@ interface RepositoryModule {
     @Binds
     @Singleton
     fun bindFeatuersRepo(repository: TrackFeaturesRepositoryImpl): TrackFeaturesRepository
+
+    @Binds
+    @Singleton
+    fun bindPlaylistsRepository(repository: PlaylistsRepositoryImpl) : PlaylistsRepository
 }
