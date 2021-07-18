@@ -1,7 +1,7 @@
 package cz.levinzonr.spotie.presentation.screens.newreleases
 
 import cz.levinzonr.roxie.RoxieViewModel
-import cz.levinzonr.spotie.domain.usecases.GetNewlyReleasedAlbumsUseCase
+import cz.levinzonr.spotie.domain.usecases.GetNewlyReleasesUseCase
 import cz.levinzonr.spotie.domain.usecases.ifError
 import cz.levinzonr.spotie.domain.usecases.ifSuccess
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -14,14 +14,14 @@ import javax.inject.Inject
 
 @HiltViewModel
 class ReleasesViewModel @Inject constructor(
-    private val getNewReleasesUseCase: GetNewlyReleasedAlbumsUseCase
+    private val getNewReleasesUseCase: GetNewlyReleasesUseCase
 ) : RoxieViewModel<Action, State, Change>() {
 
     override val initialState: State = State()
 
     override val reducer: suspend (state: State, change: Change) -> State = { state, change ->
         when (change) {
-            is Change.Loaded -> state.copy(albums = change.data)
+            is Change.Loaded -> state.copy(releases = change.data)
             is Change.Loading -> state
         }
     }
