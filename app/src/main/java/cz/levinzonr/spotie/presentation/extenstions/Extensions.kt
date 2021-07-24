@@ -11,7 +11,7 @@ import androidx.navigation.NavBackStackEntry
 import androidx.navigation.NavDeepLink
 import androidx.navigation.NavGraphBuilder
 import androidx.navigation.compose.composable
-import cz.levinzonr.spotie.presentation.screens.trackdetails.RouteSpec
+import cz.levinzonr.spotie.presentation.screens.profile.RouteSpec
 import java.lang.Math.PI
 import java.lang.Math.cos
 import kotlin.math.min

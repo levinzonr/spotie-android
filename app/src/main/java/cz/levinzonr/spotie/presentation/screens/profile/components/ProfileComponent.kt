@@ -1,4 +1,4 @@
-package cz.levinzonr.spotie.presentation.screens.home.components
+package cz.levinzonr.spotie.presentation.screens.profile.components
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.Column

@@ -1,6 +1,5 @@
 package cz.levinzonr.spotie.presentation.screens.toptracks.components
 
-import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyRow
 import androidx.compose.material.Card
@@ -32,7 +31,7 @@ fun TracksCarousel(
                 items(tracks.count()) { index ->
                     Spacer(modifier = Modifier.size(4.dp))
                     val track = tracks[index]
-                    TrackItem(track = track, onClick = { onTrackClicked.invoke(track) })
+                    TrackCarouselItem(track = track, onClick = { onTrackClicked.invoke(track) })
                 }
             }
         }

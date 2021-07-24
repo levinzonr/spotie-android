@@ -1,4 +1,4 @@
-package cz.levinzonr.spotie.presentation.screens.home
+package cz.levinzonr.spotie.presentation.screens.profile
 
 import cz.levinzonr.roxie.RoxieViewModel
 import cz.levinzonr.spotie.domain.usecases.GetUserUseCase

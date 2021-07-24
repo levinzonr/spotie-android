@@ -6,6 +6,6 @@ data class Album(
     val type: String = "single",
     val tracksCount: Int = 1,
     val releaseDate: String = "",
-    val image: String? = null,
+    val image: String? = "https://i.scdn.co/image/ab67616d0000b273583e9558baac47836db06acf",
 
 )

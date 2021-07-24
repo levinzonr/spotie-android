@@ -9,7 +9,6 @@ import androidx.compose.runtime.getValue
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.currentBackStackEntryAsState
 import cz.levinzonr.spotie.presentation.navigation.MenuItem
-import cz.levinzonr.spotie.presentation.screens.trackdetails.Routes
 import timber.log.Timber
 
 @Composable
@@ -28,9 +27,7 @@ fun AppBottomNav(items: List<MenuItem>, navController: NavHostController) {
                     navController.navigate(screen.route) {
                         launchSingleTop = true
                         restoreState = true
-                        popUpTo(Routes.tracks.path) {
-                            saveState = true
-                        }
+
                     }
                 }
             )

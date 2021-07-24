@@ -14,45 +14,24 @@ import androidx.compose.ui.unit.dp
 import com.bumptech.glide.load.resource.bitmap.RoundedCorners
 import com.google.accompanist.glide.rememberGlidePainter
 import cz.levinzonr.spotie.domain.models.Track
+import cz.levinzonr.spotie.presentation.components.ImageWithText
 import cz.levinzonr.spotie.presentation.theme.AppTheme
 import cz.levinzonr.spotie.presentation.utils.UnitAction
 
 @Composable
-fun TrackItem(modifier: Modifier = Modifier, track: Track, onClick: UnitAction = {}) {
-    Column(
-        modifier = modifier
-            .size(120.dp)
-            .clickable { onClick.invoke() },
-        verticalArrangement = Arrangement.Center,
-        horizontalAlignment = Alignment.CenterHorizontally
-    ) {
-        Image(
-            modifier = Modifier.weight(9f),
-            painter = rememberGlidePainter(
-                request = track.imageUrl,
-                requestBuilder = {
-                    transform(RoundedCorners(16))
-                }
-            ),
-            contentDescription = "track_image"
-        )
-        Text(
-            text = track.artistName,
-            style = MaterialTheme.typography.caption,
-            modifier = Modifier.weight(2f).padding(top = 4.dp)
-        )
-        Text(
-            text = track.title,
-            style = MaterialTheme.typography.caption.copy(fontWeight = FontWeight.Bold),
-            modifier = Modifier.weight(2f)
-        )
-    }
+fun TrackCarouselItem(modifier: Modifier = Modifier, track: Track, onClick: UnitAction = {}) {
+    ImageWithText(
+        title = track.title,
+        subtitle = track.artistName,
+        imageUrl = track.imageUrl,
+        modifier = modifier.clickable { onClick.invoke() }
+    )
 }
 
 @Preview(showBackground = true)
 @Composable
 fun PreviewTrackItem() {
     AppTheme {
-        TrackItem(track = Track())
+        TrackCarouselItem(track = Track())
     }
 }

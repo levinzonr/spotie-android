@@ -1,4 +1,4 @@
-package cz.levinzonr.spotie.presentation.screens.home
+package cz.levinzonr.spotie.presentation.screens.profile
 
 import cz.levinzonr.roxie.BaseAction
 import cz.levinzonr.roxie.BaseChange

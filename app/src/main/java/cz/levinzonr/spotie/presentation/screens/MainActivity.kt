@@ -18,16 +18,15 @@ import androidx.navigation.navigation
 import com.google.accompanist.pager.ExperimentalPagerApi
 import com.spotify.sdk.android.auth.AuthorizationClient
 import com.spotify.sdk.android.auth.AuthorizationRequest
-import cz.levinzonr.spotie.presentation.components.AppBottomNav
 import cz.levinzonr.spotie.presentation.extenstions.composable
 import cz.levinzonr.spotie.presentation.navigation.MenuItem
-import cz.levinzonr.spotie.presentation.screens.home.ProfileScreen
+import cz.levinzonr.spotie.presentation.screens.home.HomeEvent
+import cz.levinzonr.spotie.presentation.screens.home.HomeScreen
 import cz.levinzonr.spotie.presentation.screens.login.LoginScreen
 import cz.levinzonr.spotie.presentation.screens.newreleases.ReleasesScreen
 import cz.levinzonr.spotie.presentation.screens.player.PlayerComponent
-import cz.levinzonr.spotie.presentation.screens.toptracks.TopTracksScreen
-import cz.levinzonr.spotie.presentation.screens.trackdetails.Routes
-import cz.levinzonr.spotie.presentation.screens.trackdetails.RoutesActions
+import cz.levinzonr.spotie.presentation.screens.profile.Routes
+import cz.levinzonr.spotie.presentation.screens.profile.RoutesActions
 import cz.levinzonr.spotie.presentation.screens.trackdetails.TrackDetailsScreen
 import cz.levinzonr.spotie.presentation.theme.AppTheme
 import dagger.hilt.android.AndroidEntryPoint
@@ -69,7 +68,15 @@ class MainActivity : ComponentActivity() {
                         ) {
                             navigation(Routes.tracks.path, MenuItem.Home.route) {
                                 composable(Routes.tracks) {
-                                   ReleasesScreen()
+                                   HomeScreen {
+                                       when (it) {
+                                           HomeEvent.ExploreNewReleases -> navController.navigate(RoutesActions.toNewReleases())
+                                       }
+                                   }
+                                }
+
+                                composable(Routes.newReleases) {
+                                    ReleasesScreen()
                                 }
 
                                 composable(Routes.trackDetails) {
