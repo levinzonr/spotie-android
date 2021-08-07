@@ -22,6 +22,6 @@ sealed interface Change: BaseChange {
 }
 
 
-sealed interface HomeEvent {
-    object ExploreNewReleases: HomeEvent
+sealed interface HomeScreenEvent {
+    object ExploreNewReleases: HomeScreenEvent
 }

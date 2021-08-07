@@ -14,8 +14,7 @@ import cz.levinzonr.spotie.presentation.screens.newreleases.components.ReleaseIt
 
 @Composable
 @Route("newReleases")
-fun ReleasesScreen(viewModel: ReleasesViewModel = hiltViewModel()) {
-    val state = viewModel.stateFlow.collectAsState(initial = State()).value
+fun ReleasesScreen(state: State = State()) {
     LazyColumn(
         verticalArrangement = Arrangement.spacedBy(16.dp),
         contentPadding = PaddingValues(16.dp),

@@ -20,9 +20,11 @@ import com.spotify.sdk.android.auth.AuthorizationClient
 import com.spotify.sdk.android.auth.AuthorizationRequest
 import cz.levinzonr.spotie.presentation.extenstions.composable
 import cz.levinzonr.spotie.presentation.navigation.MenuItem
-import cz.levinzonr.spotie.presentation.screens.home.HomeEvent
+import cz.levinzonr.spotie.presentation.screens.home.HomeOrchestrator
+import cz.levinzonr.spotie.presentation.screens.home.HomeScreenEvent
 import cz.levinzonr.spotie.presentation.screens.home.HomeScreen
 import cz.levinzonr.spotie.presentation.screens.login.LoginScreen
+import cz.levinzonr.spotie.presentation.screens.newreleases.ReleasesOrchestrator
 import cz.levinzonr.spotie.presentation.screens.newreleases.ReleasesScreen
 import cz.levinzonr.spotie.presentation.screens.player.PlayerComponent
 import cz.levinzonr.spotie.presentation.screens.profile.Routes
@@ -68,15 +70,14 @@ class MainActivity : ComponentActivity() {
                         ) {
                             navigation(Routes.tracks.path, MenuItem.Home.route) {
                                 composable(Routes.tracks) {
-                                   HomeScreen {
-                                       when (it) {
-                                           HomeEvent.ExploreNewReleases -> navController.navigate(RoutesActions.toNewReleases())
-                                       }
-                                   }
+                                    HomeOrchestrator(navController = navController)
                                 }
 
                                 composable(Routes.newReleases) {
-                                    ReleasesScreen()
+                                    ReleasesOrchestrator(
+                                        viewModel = hiltViewModel(),
+                                        navController = navController
+                                    )
                                 }
 
                                 composable(Routes.trackDetails) {
