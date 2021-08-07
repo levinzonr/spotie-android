@@ -7,8 +7,10 @@ import androidx.compose.foundation.lazy.items
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
+import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
+import com.google.accompanist.insets.statusBarsPadding
 import cz.levinzonr.router.core.Route
 import cz.levinzonr.spotie.presentation.screens.newreleases.components.ReleaseItem
 
@@ -18,6 +20,7 @@ fun ReleasesScreen(state: State = State()) {
     LazyColumn(
         verticalArrangement = Arrangement.spacedBy(16.dp),
         contentPadding = PaddingValues(16.dp),
+        modifier = Modifier.statusBarsPadding()
     ) {
         items(state.releases) { release ->
             ReleaseItem(release = release)

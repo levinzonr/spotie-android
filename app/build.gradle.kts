@@ -115,6 +115,8 @@ dependencies {
     // accompanist
     implementation(Dependencies.coil)
     implementation(Dependencies.Accompanist.pager)
+    implementation(Dependencies.Accompanist.systemUi)
+    implementation(Dependencies.Accompanist.windowInsets)
 
     implementation(Dependencies.spotifyAuth)
     implementation(project(":spotify-remote"))

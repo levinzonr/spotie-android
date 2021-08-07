@@ -5,17 +5,24 @@ import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.activity.viewModels
+import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material.Scaffold
+import androidx.compose.runtime.SideEffect
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
+import androidx.core.view.WindowCompat
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
 import androidx.navigation.navigation
+import com.google.accompanist.insets.ProvideWindowInsets
+import com.google.accompanist.insets.navigationBarsPadding
 import com.google.accompanist.pager.ExperimentalPagerApi
+import com.google.accompanist.systemuicontroller.rememberSystemUiController
 import com.spotify.sdk.android.auth.AuthorizationClient
 import com.spotify.sdk.android.auth.AuthorizationRequest
 import cz.levinzonr.spotie.presentation.extenstions.composable
@@ -43,60 +50,74 @@ class MainActivity : ComponentActivity() {
     @Inject
     lateinit var authorizationRequest: AuthorizationRequest
 
-    private val loginAction = registerForActivityResult(ActivityResultContracts.StartActivityForResult()) {
-        viewModel.dispatch(Action.HandleLoginResult(it.resultCode, it.data))
-    }
+    private val loginAction =
+        registerForActivityResult(ActivityResultContracts.StartActivityForResult()) {
+            viewModel.dispatch(Action.HandleLoginResult(it.resultCode, it.data))
+        }
 
     @ExperimentalPagerApi
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        WindowCompat.setDecorFitsSystemWindows(window, false)
+
         setContent {
+
+            val uiController = rememberSystemUiController()
+            SideEffect {
+                uiController.setStatusBarColor(Color.Transparent, true)
+            }
+
             AppTheme {
-                val navController = rememberNavController()
-                val state = navController.currentBackStackEntryAsState().value
-                Timber.d("State : ${state?.destination?.route}")
-                val viewState by viewModel.stateFlow.collectAsState(initial = State())
-                if (viewState.isLoggedIn) {
+                ProvideWindowInsets {
 
-                    Scaffold(
-                        bottomBar = {
-                            PlayerComponent()
-                        }
-                    ) {
-                        NavHost(
-                            navController = navController,
-                            startDestination = MenuItem.Home.route,
-                            modifier = Modifier.padding(it)
+                    val navController = rememberNavController()
+                    val state = navController.currentBackStackEntryAsState().value
+                    Timber.d("State : ${state?.destination?.route}")
+                    val viewState by viewModel.stateFlow.collectAsState(initial = State())
+                    if (viewState.isLoggedIn) {
+
+                        Scaffold(
+                            modifier = Modifier.navigationBarsPadding(),
+                            bottomBar = {
+                                PlayerComponent()
+                            }
                         ) {
-                            navigation(Routes.tracks.path, MenuItem.Home.route) {
-                                composable(Routes.tracks) {
-                                    HomeOrchestrator(navController = navController)
-                                }
+                            NavHost(
+                                navController = navController,
+                                startDestination = MenuItem.Home.route,
+                                modifier = Modifier.padding(it)
+                            ) {
+                                navigation(Routes.tracks.path, MenuItem.Home.route) {
+                                    composable(Routes.tracks) {
+                                        HomeOrchestrator(navController = navController)
+                                    }
 
-                                composable(Routes.newReleases) {
-                                    ReleasesOrchestrator(
-                                        viewModel = hiltViewModel(),
-                                        navController = navController
-                                    )
-                                }
+                                    composable(Routes.newReleases) {
+                                        ReleasesOrchestrator(
+                                            viewModel = hiltViewModel(),
+                                            navController = navController
+                                        )
+                                    }
 
-                                composable(Routes.trackDetails) {
-                                    TrackDetailsScreen(hiltViewModel())
+                                    composable(Routes.trackDetails) {
+                                        TrackDetailsScreen(hiltViewModel())
+                                    }
                                 }
                             }
                         }
-                    }
-                } else {
-                    LoginScreen(
-                        onHandleLoginEvent = {
-                            loginAction.launch(
-                                AuthorizationClient.createLoginActivityIntent(
-                                    this,
-                                    authorizationRequest
+                    } else {
+                        LoginScreen(
+                            onHandleLoginEvent = {
+                                loginAction.launch(
+                                    AuthorizationClient.createLoginActivityIntent(
+                                        this,
+                                        authorizationRequest
+                                    )
                                 )
-                            )
-                        }
-                    )
+                            }
+                        )
+                    }
+
                 }
             }
         }

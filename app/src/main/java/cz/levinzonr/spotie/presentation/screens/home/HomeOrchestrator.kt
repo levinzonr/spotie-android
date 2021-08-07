@@ -21,6 +21,13 @@ fun HomeOrchestrator(
                 is HomeScreenEvent.ExploreNewReleases -> {
                     navController.navigate(RoutesActions.toNewReleases())
                 }
+                is HomeScreenEvent.TrackClick -> {
+                    navController.navigate(RoutesActions.toTrackDetails(it.track.id))
+                }
+
+                is HomeScreenEvent.SeeTopTracks -> {
+
+                }
             }
         }
     )

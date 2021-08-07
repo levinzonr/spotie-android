@@ -1,6 +1,7 @@
 package cz.levinzonr.spotie.presentation.screens.home.components
 
 import androidx.compose.foundation.background
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
@@ -17,7 +18,12 @@ import cz.levinzonr.spotie.presentation.components.AppButton
 import cz.levinzonr.spotie.presentation.components.AppButtonType
 
 @Composable
-fun TopTracksPreview(title: String, tracks: List<Track>, onSeeAll: () -> Unit = {}) {
+fun TopTracksPreview(
+    title: String,
+    tracks: List<Track>,
+    onSeeAll: () -> Unit = {},
+    onTrackClick: (Track) -> Unit = {}
+) {
 
     Column(verticalArrangement = Arrangement.spacedBy(8.dp)) {
         Row(
@@ -38,7 +44,10 @@ fun TopTracksPreview(title: String, tracks: List<Track>, onSeeAll: () -> Unit = 
             }
         }
         tracks.take(3).forEach {
-            TrackListItem(track = it)
+            TrackListItem(
+                track = it,
+                modifier = Modifier.clickable { onTrackClick.invoke(it) }
+            )
         }
     }
 }

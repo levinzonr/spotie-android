@@ -5,6 +5,7 @@ import cz.levinzonr.roxie.BaseChange
 import cz.levinzonr.roxie.BaseState
 import cz.levinzonr.spotie.domain.models.NewRelease
 import cz.levinzonr.spotie.domain.models.TopTracks
+import cz.levinzonr.spotie.domain.models.Track
 
 data class State(
     val topTracks: TopTracks = TopTracks(),
@@ -24,4 +25,6 @@ sealed interface Change: BaseChange {
 
 sealed interface HomeScreenEvent {
     object ExploreNewReleases: HomeScreenEvent
+    data class TrackClick(val track: Track): HomeScreenEvent
+    class SeeTopTracks: HomeScreenEvent
 }

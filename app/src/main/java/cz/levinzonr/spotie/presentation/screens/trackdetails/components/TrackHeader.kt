@@ -25,7 +25,8 @@ fun TrackHeader(modifier: Modifier = Modifier, track: Track) {
         Image(
             painter = rememberImagePainter(track.imageUrl),
             contentDescription = null,
-            contentScale = ContentScale.FillWidth
+            contentScale = ContentScale.FillBounds,
+            modifier = Modifier.fillMaxSize()
         )
 
         Box(
