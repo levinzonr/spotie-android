@@ -30,13 +30,19 @@ import timber.log.Timber
 fun PlayerComponent(modifier: Modifier = Modifier, viewModel: PlayerViewModel = hiltViewModel()) {
     val state by viewModel.stateFlow.collectAsState(initial = PlayerState.Idle)
     Timber.d("state : $state")
-    Box(modifier = modifier
-        .fillMaxWidth()
-        .height(50.dp)) {
+    Box(
+        modifier = modifier
+            .fillMaxWidth()
+            .height(50.dp)
+    ) {
         when (val state = state) {
             is PlayerState.Idle -> CircularProgressIndicator()
-            is PlayerState.Error -> PlayerError { viewModel.dispatch(PlayerAction.Previous)}
-            is PlayerState.Ready -> PlayerReady(track = state.track, isPlaying = state.isPlaying, viewModel::dispatch)
+            is PlayerState.Error -> PlayerError { viewModel.dispatch(PlayerAction.Previous) }
+            is PlayerState.Ready -> PlayerReady(
+                track = state.track,
+                isPlaying = state.isPlaying,
+                viewModel::dispatch
+            )
         }
     }
 
@@ -58,62 +64,63 @@ private fun PlayerReady(
     onActionDispatch: (PlayerAction) -> Unit = {}
 ) {
 
-        Row(
-            modifier = Modifier.fillMaxSize(),
-            verticalAlignment = Alignment.CenterVertically
+    Row(
+        modifier = Modifier.fillMaxSize(),
+        verticalAlignment = Alignment.CenterVertically
+    ) {
+        Image(
+            modifier = Modifier
+                .fillMaxHeight()
+                .aspectRatio(1f),
+            painter = rememberImagePainter(track.imageUrl) {
+                error(R.drawable.ic_baseline_pause_24)
+                placeholder(R.drawable.ic_baseline_pause_24)
+            },
+            contentDescription = track.title,
+            contentScale = ContentScale.Fit
+        )
+
+        Spacer(modifier = Modifier.size(12.dp))
+
+        Column(
+            horizontalAlignment = Alignment.Start,
+            verticalArrangement = Arrangement.Center
         ) {
-            Image(
-                modifier = Modifier
-                    .fillMaxHeight()
-                    .wrapContentWidth(),
-                painter = rememberImagePainter(track.imageUrl) {
-                    error(R.drawable.ic_baseline_pause_24)
-                    placeholder(R.drawable.ic_baseline_pause_24)
-                },
-                contentDescription = track.title,
-                contentScale = ContentScale.FillBounds
-            )
-            
-            Spacer(modifier = Modifier.size(12.dp))
-            
-            Column(
-                horizontalAlignment = Alignment.Start,
-                verticalArrangement = Arrangement.Center
-            ) {
-                Text(text = track.artistName, style = MaterialTheme.typography.caption)
-                Text(text = track.title, style = MaterialTheme.typography.caption)
-            }
-            
-            
-
-            Row(
-                modifier = Modifier.fillMaxWidth(),
-                horizontalArrangement = Arrangement.End
-            ) {
-                IconButton(onClick = { onActionDispatch.invoke(PlayerAction.Previous) }) {
-                    Icon(
-                        painter = painterResource(id = R.drawable.ic_baseline_skip_previous_24),
-                        contentDescription = ""
-                    )
-                }
-
-                IconButton(onClick = { onActionDispatch.invoke(PlayerAction.Toggle) }) {
-                    val iconRes = if (isPlaying) R.drawable.ic_baseline_pause_24 else R.drawable.ic_baseline_play_arrow_24
-                    Icon(
-                        painter = painterResource(id = iconRes),
-                        contentDescription = ""
-                    )
-                }
-                IconButton(onClick = { onActionDispatch.invoke(PlayerAction.Next) }) {
-                    Icon(
-                        painter = painterResource(id = R.drawable.ic_baseline_skip_next_24),
-                        contentDescription = ""
-                    )
-                }
-            }
-
-
+            Text(text = track.artistName, style = MaterialTheme.typography.caption)
+            Text(text = track.title, style = MaterialTheme.typography.caption)
         }
+
+
+
+        Row(
+            modifier = Modifier.fillMaxWidth(),
+            horizontalArrangement = Arrangement.End
+        ) {
+            IconButton(onClick = { onActionDispatch.invoke(PlayerAction.Previous) }) {
+                Icon(
+                    painter = painterResource(id = R.drawable.ic_baseline_skip_previous_24),
+                    contentDescription = ""
+                )
+            }
+
+            IconButton(onClick = { onActionDispatch.invoke(PlayerAction.Toggle) }) {
+                val iconRes =
+                    if (isPlaying) R.drawable.ic_baseline_pause_24 else R.drawable.ic_baseline_play_arrow_24
+                Icon(
+                    painter = painterResource(id = iconRes),
+                    contentDescription = ""
+                )
+            }
+            IconButton(onClick = { onActionDispatch.invoke(PlayerAction.Next) }) {
+                Icon(
+                    painter = painterResource(id = R.drawable.ic_baseline_skip_next_24),
+                    contentDescription = ""
+                )
+            }
+        }
+
+
+    }
 }
 
 
@@ -121,9 +128,11 @@ private fun PlayerReady(
 @Composable
 fun PreviewPlayerComponent() {
     AppTheme {
-        Box(modifier = Modifier
-            .fillMaxWidth()
-            .height(50.dp)) {
+        Box(
+            modifier = Modifier
+                .fillMaxWidth()
+                .height(50.dp)
+        ) {
             PlayerReady(Track(), isPlaying = true)
 
         }
