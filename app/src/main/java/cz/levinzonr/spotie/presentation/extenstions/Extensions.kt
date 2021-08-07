@@ -41,7 +41,7 @@ fun albumImage(url: String?, cornerRadius: Dp = 16.dp) : ImagePainter {
 }
 
 val MaterialTheme.appGradient: List<Color> @Composable get() {
-    return listOf(colors.primary, colors.secondary)
+    return listOf(colors.primaryVariant, colors.secondary)
 }
 
 fun Modifier.gradientBackground(colors: List<Color>, angle: Float) = this.then(
