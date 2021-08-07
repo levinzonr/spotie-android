@@ -23,8 +23,11 @@ fun HomeScreen(
     onHandleHomeEvent: (HomeEvent) -> Unit
 ) {
     val state = viewModel.stateFlow.collectAsState(initial = State()).value
-    LazyColumn(Modifier.padding(horizontal = 16.dp), verticalArrangement = Arrangement.spacedBy(16.dp)) {
-        
+    LazyColumn(
+        Modifier.padding(horizontal = 16.dp),
+        verticalArrangement = Arrangement.spacedBy(32.dp)
+    ) {
+
         item {
             NewReleasesItem(releases = state.releases) {
                 onHandleHomeEvent.invoke(HomeEvent.ExploreNewReleases)
@@ -32,25 +35,32 @@ fun HomeScreen(
         }
 
         item {
-        }
-        
-        item {
             Column {
                 Text(text = "Your most favorite tracks", style = MaterialTheme.typography.h5)
-                TopTracksPreview(tracks = state.topTracks.shortTerm)
+                Spacer(modifier = Modifier.size(16.dp))
+                TopTracksPreview(
+                    title = "Over last week",
+                    tracks = state.topTracks.shortTerm
+                )
             }
 
         }
-        
+
         item {
-            TopTracksPreview(tracks = state.topTracks.midTerm)
+            TopTracksPreview(
+                title = "Over last month",
+                tracks = state.topTracks.midTerm
+            )
         }
-        
+
         item {
-            TopTracksPreview(tracks = state.topTracks.longTerm)
+            TopTracksPreview(
+                title = "Over last years",
+                tracks = state.topTracks.longTerm
+            )
 
         }
-        
+
     }
 }
 

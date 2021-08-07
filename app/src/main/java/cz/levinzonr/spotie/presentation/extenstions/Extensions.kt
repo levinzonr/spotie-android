@@ -4,13 +4,19 @@ import androidx.compose.material.MaterialTheme
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.drawBehind
+import androidx.compose.ui.geometry.CornerRadius
 import androidx.compose.ui.geometry.Offset
 import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.unit.Dp
+import androidx.compose.ui.unit.dp
 import androidx.navigation.NavBackStackEntry
 import androidx.navigation.NavDeepLink
 import androidx.navigation.NavGraphBuilder
 import androidx.navigation.compose.composable
+import coil.compose.ImagePainter
+import coil.compose.rememberImagePainter
+import coil.transform.RoundedCornersTransformation
 import cz.levinzonr.spotie.presentation.screens.profile.RouteSpec
 import java.lang.Math.PI
 import java.lang.Math.cos
@@ -25,6 +31,13 @@ fun NavGraphBuilder.composable(
     content: @Composable (NavBackStackEntry) -> Unit
 ) {
     composable(spec.path, spec.navArgs, deepLinks, content)
+}
+
+@Composable
+fun albumImage(url: String?, cornerRadius: Dp = 16.dp) : ImagePainter {
+    return rememberImagePainter(url) {
+        transformations(RoundedCornersTransformation(cornerRadius.value))
+    }
 }
 
 val MaterialTheme.appGradient: List<Color> @Composable get() {

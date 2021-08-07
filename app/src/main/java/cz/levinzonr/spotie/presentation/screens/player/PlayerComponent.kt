@@ -33,16 +33,20 @@ fun PlayerComponent(modifier: Modifier = Modifier, viewModel: PlayerViewModel = 
     Box(
         modifier = modifier
             .fillMaxWidth()
-            .height(50.dp)
+            .height(56.dp)
     ) {
         when (val state = state) {
-            is PlayerState.Idle -> CircularProgressIndicator()
-            is PlayerState.Error -> PlayerError { viewModel.dispatch(PlayerAction.Previous) }
-            is PlayerState.Ready -> PlayerReady(
-                track = state.track,
-                isPlaying = state.isPlaying,
-                viewModel::dispatch
-            )
+            is PlayerState.Ready -> {
+                Surface(
+                    elevation = 4.dp
+                ) {
+                    PlayerReady(
+                        track = state.track,
+                        isPlaying = state.isPlaying,
+                        viewModel::dispatch
+                    )
+                }
+            }
         }
     }
 

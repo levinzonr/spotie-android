@@ -81,7 +81,7 @@ private fun AppButtonContent(
     icon: Painter?,
     color: Color = MaterialTheme.colors.onSurface
 ) {
-    Row(modifier = modifier.padding(horizontal = 24.dp, vertical = 8.dp)) {
+    Row(modifier = modifier.padding(horizontal = 8.dp, vertical = 8.dp)) {
         icon?.let {
             Image(
                 modifier = Modifier.size(24.dp),

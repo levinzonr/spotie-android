@@ -10,12 +10,14 @@ import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import coil.compose.rememberImagePainter
 import coil.transform.RoundedCornersTransformation
 import cz.levinzonr.spotie.domain.models.NewRelease
+import cz.levinzonr.spotie.presentation.components.AlbumImage
 import cz.levinzonr.spotie.presentation.components.AppButton
 import cz.levinzonr.spotie.presentation.components.AppButtonType
 import cz.levinzonr.spotie.presentation.components.ImageWithText
@@ -24,18 +26,21 @@ import cz.levinzonr.spotie.presentation.theme.AppTheme
 @Composable
 fun NewReleasesItem(releases: List<NewRelease>, onExploreClicked: () -> Unit) {
     Column(
-        verticalArrangement = Arrangement.spacedBy(4.dp)
+        horizontalAlignment = Alignment.CenterHorizontally
     ) {
+        Spacer(modifier = Modifier.size(16.dp))
         val artistsString = releases.map { it.artistName }.distinct().take(2).joinToString(",")
         Text(
             text = "New Releases",
-            style = MaterialTheme.typography.h5
+            style = MaterialTheme.typography.h5,
+            textAlign = TextAlign.Center
         )
         Text(
-            text = "${releases.count()} new releases this week\n$artistsString and ${releases.count() - 2} more",
-            style = MaterialTheme.typography.subtitle1
+            text = "$artistsString and ${releases.count() - 2} more",
+            style = MaterialTheme.typography.subtitle1,
+            textAlign = TextAlign.Center
         )
-
+        Spacer(modifier = Modifier.size(16.dp))
 
         Box(modifier = Modifier.fillMaxWidth()) {
             val first = releases.first()
@@ -61,7 +66,7 @@ fun NewReleasesItem(releases: List<NewRelease>, onExploreClicked: () -> Unit) {
             )
         }
 
-        Spacer(modifier = Modifier.size(8.dp))
+        Spacer(modifier = Modifier.size(16.dp))
         AppButton(
             text = "Explore",
             type = AppButtonType.Outlined,
@@ -74,16 +79,6 @@ fun NewReleasesItem(releases: List<NewRelease>, onExploreClicked: () -> Unit) {
     }
 }
 
-@Composable
-fun AlbumImage(url: String?, modifier: Modifier = Modifier, size: Dp = 100.dp) {
-    Image(
-        modifier = modifier.size(size),
-        contentDescription = "",
-        painter = rememberImagePainter(url) {
-            transformations(RoundedCornersTransformation(8f))
-        }
-    )
-}
 
 @Preview
 @Composable
