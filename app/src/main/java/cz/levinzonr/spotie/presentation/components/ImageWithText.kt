@@ -13,8 +13,8 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
-import com.bumptech.glide.load.resource.bitmap.RoundedCorners
-import com.google.accompanist.glide.rememberGlidePainter
+import coil.compose.rememberImagePainter
+import coil.transform.RoundedCornersTransformation
 
 @Composable
 fun ImageWithText(
@@ -30,12 +30,9 @@ fun ImageWithText(
     ) {
         Image(
             modifier = Modifier.weight(9f),
-            painter = rememberGlidePainter(
-                request = imageUrl,
-                requestBuilder = {
-                    transform(RoundedCorners(16))
-                }
-            ),
+            painter = rememberImagePainter(imageUrl) {
+                transformations(RoundedCornersTransformation(4f))
+            },
             contentDescription = "track_image"
         )
         Text(

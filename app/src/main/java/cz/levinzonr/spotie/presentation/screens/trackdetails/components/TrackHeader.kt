@@ -13,7 +13,7 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import com.google.accompanist.glide.rememberGlidePainter
+import coil.compose.rememberImagePainter
 import cz.levinzonr.spotie.domain.models.Track
 import cz.levinzonr.spotie.presentation.extenstions.gradientBackground
 import cz.levinzonr.spotie.presentation.theme.AppTheme
@@ -23,7 +23,7 @@ import timber.log.Timber
 fun TrackHeader(modifier: Modifier = Modifier, track: Track) {
     Box(modifier = modifier.height(300.dp)) {
         Image(
-            painter = rememberGlidePainter(request = track.imageUrl),
+            painter = rememberImagePainter(track.imageUrl),
             contentDescription = null,
             contentScale = ContentScale.FillWidth
         )

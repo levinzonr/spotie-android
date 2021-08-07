@@ -9,7 +9,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import com.google.accompanist.glide.rememberGlidePainter
+import coil.compose.rememberImagePainter
 import cz.levinzonr.spotie.domain.models.Album
 import cz.levinzonr.spotie.domain.models.NewRelease
 import cz.levinzonr.spotie.presentation.theme.AppTheme
@@ -19,7 +19,7 @@ fun ReleaseItem(modifier: Modifier = Modifier, release: NewRelease) {
     Row(modifier = modifier) {
         Image(
             modifier = Modifier.size(60.dp),
-            painter = rememberGlidePainter(request = release.album.image),
+            painter = rememberImagePainter(release.album.image),
             contentDescription = release.album.title
         )
         

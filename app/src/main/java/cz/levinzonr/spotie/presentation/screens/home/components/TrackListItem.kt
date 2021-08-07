@@ -8,7 +8,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import com.google.accompanist.glide.rememberGlidePainter
+import coil.compose.rememberImagePainter
 import cz.levinzonr.spotie.domain.models.Track
 import cz.levinzonr.spotie.presentation.theme.AppTheme
 
@@ -18,7 +18,7 @@ fun TrackListItem(modifier: Modifier = Modifier, track: Track) {
             .height(60.dp)
             .fillMaxWidth()) {
             Image(
-                painter = rememberGlidePainter(request = track.imageUrl),
+                painter = rememberImagePainter(track.imageUrl),
                 contentDescription = "",
                 modifier = Modifier
                     .fillMaxHeight()

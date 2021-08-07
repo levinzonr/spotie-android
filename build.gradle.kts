@@ -4,20 +4,12 @@ buildscript {
     repositories {
         google()
         mavenCentral()
-        maven(url = "https://oss.sonatype.org/content/repositories/snapshots") {
-            content {
-                includeModule("com.google.dagger", "hilt-android-gradle-plugin")
-            }
-        }
     }
     dependencies {
         classpath(Plugins.gradle)
         classpath(Plugins.kotlin)
         classpath(Plugins.kotlinSerialization)
-        classpath("com.google.dagger:hilt-android-gradle-plugin:HEAD-SNAPSHOT")
-
-        // NOTE: Do not place your application dependencies here; they belong
-        // in the individual module build.gradle files
+        classpath(Plugins.hilt)
     }
 }
 

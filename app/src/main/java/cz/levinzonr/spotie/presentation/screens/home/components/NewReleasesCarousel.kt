@@ -13,8 +13,8 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
-import com.bumptech.glide.load.resource.bitmap.RoundedCorners
-import com.google.accompanist.glide.rememberGlidePainter
+import coil.compose.rememberImagePainter
+import coil.transform.RoundedCornersTransformation
 import cz.levinzonr.spotie.domain.models.NewRelease
 import cz.levinzonr.spotie.presentation.components.AppButton
 import cz.levinzonr.spotie.presentation.components.AppButtonType
@@ -79,9 +79,9 @@ fun AlbumImage(url: String?, modifier: Modifier = Modifier, size: Dp = 100.dp) {
     Image(
         modifier = modifier.size(size),
         contentDescription = "",
-        painter = rememberGlidePainter(request = url, requestBuilder = {
-            transform(RoundedCorners(8))
-        }),
+        painter = rememberImagePainter(url) {
+            transformations(RoundedCornersTransformation(8f))
+        }
     )
 }
 

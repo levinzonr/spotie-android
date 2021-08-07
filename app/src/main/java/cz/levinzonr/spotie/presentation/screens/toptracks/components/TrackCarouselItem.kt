@@ -11,8 +11,6 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import com.bumptech.glide.load.resource.bitmap.RoundedCorners
-import com.google.accompanist.glide.rememberGlidePainter
 import cz.levinzonr.spotie.domain.models.Track
 import cz.levinzonr.spotie.presentation.components.ImageWithText
 import cz.levinzonr.spotie.presentation.theme.AppTheme

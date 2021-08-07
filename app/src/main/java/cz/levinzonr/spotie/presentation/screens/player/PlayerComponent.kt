@@ -18,7 +18,7 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.lifecycle.viewmodel.compose.viewModel
-import com.google.accompanist.glide.rememberGlidePainter
+import coil.compose.rememberImagePainter
 import cz.levinzonr.spotie.domain.models.PlayerState
 import cz.levinzonr.spotie.domain.models.Track
 import cz.levinzonr.spotie.R
@@ -66,10 +66,10 @@ private fun PlayerReady(
                 modifier = Modifier
                     .fillMaxHeight()
                     .wrapContentWidth(),
-                painter = rememberGlidePainter(request = track.imageUrl, requestBuilder = {
+                painter = rememberImagePainter(track.imageUrl) {
                     error(R.drawable.ic_baseline_pause_24)
                     placeholder(R.drawable.ic_baseline_pause_24)
-                }),
+                },
                 contentDescription = track.title,
                 contentScale = ContentScale.FillBounds
             )

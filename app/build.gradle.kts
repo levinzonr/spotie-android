@@ -113,7 +113,7 @@ dependencies {
     implementation(Dependencies.Compose.livedata)
 
     // accompanist
-    implementation(Dependencies.Accompanist.coil)
+    implementation(Dependencies.coil)
     implementation(Dependencies.Accompanist.pager)
 
     implementation(Dependencies.spotifyAuth)

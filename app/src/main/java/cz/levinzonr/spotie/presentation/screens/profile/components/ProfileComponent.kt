@@ -11,8 +11,8 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import com.bumptech.glide.load.resource.bitmap.CircleCrop
-import com.google.accompanist.glide.rememberGlidePainter
+import coil.compose.rememberImagePainter
+import coil.transform.CircleCropTransformation
 import cz.levinzonr.spotie.domain.models.User
 import cz.levinzonr.spotie.presentation.theme.AppTheme
 
@@ -25,9 +25,9 @@ fun UserInfo(user: User) {
         Image(
             modifier = Modifier.size(120.dp),
             contentDescription = user.displayName,
-            painter = rememberGlidePainter(request = user.imageUrl, requestBuilder = {
-                transform(CircleCrop())
-            })
+            painter = rememberImagePainter(user.imageUrl) {
+                transformations(CircleCropTransformation())
+            }
         )
         Spacer(modifier = Modifier.size(16.dp))
         Text(text = user.displayName)

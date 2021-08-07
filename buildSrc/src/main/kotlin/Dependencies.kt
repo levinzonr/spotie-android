@@ -5,6 +5,7 @@ object Dependencies {
     const val timber = "com.jakewharton.timber:timber:4.7.1"
     const val roxie = "com.github.levinzonr:roxie:1.5.0"
     const val spotifyAuth = "com.spotify.android:auth:1.2.5"
+    const val coil = "io.coil-kt:coil-compose:1.3.2"
 
     object SafeRouting {
         const val compiler = "com.github.levinzonr.compose-safe-routing:compiler:1.0.0"
@@ -20,7 +21,7 @@ object Dependencies {
     }
 
     object Kotlin {
-        const val version = "1.5.10"
+        const val version = "1.5.21"
         private const val coroutinesVersion = "1.4.32"
         const val kotlin = "org.jetbrains.kotlin:kotlin-stdlib:$version"
         const val coroutinesAndroid = "org.jetbrains.kotlinx:kotlinx-coroutines-android:$coroutinesVersion"
@@ -29,8 +30,7 @@ object Dependencies {
     }
 
     object Accompanist {
-        private const val version = "0.13.0"
-        const val coil = "com.google.accompanist:accompanist-glide:$version"
+        private const val version = "0.16.0"
         const val windowInsets = "com.google.accompanist:accompanist-insets:$version"
         const val placeholder = "com.google.accompanist:accompanist-placeholder$version"
         const val flexLayout = "com.google.accompanist:accompanist-flowlayout:$version"
@@ -59,7 +59,7 @@ object Dependencies {
     }
 
     object Compose {
-        const val version = "1.0.0-rc02"
+        const val version = "1.0.1"
         const val ui = "androidx.compose.ui:ui:$version"
         const val material = "androidx.compose.material:material:$version"
         const val tooling = "androidx.compose.ui:ui-tooling:$version"
@@ -69,8 +69,8 @@ object Dependencies {
     }
 
     object Navigation {
-        const val compose = "androidx.navigation:navigation-compose:2.4.0-alpha01"
-        const val hilt = "androidx.hilt:hilt-navigation-compose:1.0.0-alpha02"
+        const val compose = "androidx.navigation:navigation-compose:2.4.0-alpha05"
+        const val hilt = "androidx.hilt:hilt-navigation-compose:1.0.0-alpha03"
     }
 
     object Hilt {
