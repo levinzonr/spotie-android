@@ -33,7 +33,7 @@ fun PlayerComponent(modifier: Modifier = Modifier, viewModel: PlayerViewModel = 
     Box(
         modifier = modifier
             .fillMaxWidth()
-            .height(56.dp)
+            .height(64.dp)
     ) {
         when (val state = state) {
             is PlayerState.Ready -> {

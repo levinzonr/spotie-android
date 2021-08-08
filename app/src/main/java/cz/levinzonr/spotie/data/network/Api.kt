@@ -1,7 +1,9 @@
 package cz.levinzonr.spotie.data.network
 
 import cz.levinzonr.spotie.data.network.models.*
+import retrofit2.Response
 import retrofit2.http.GET
+import retrofit2.http.POST
 import retrofit2.http.Path
 import retrofit2.http.Query
 
@@ -9,6 +11,16 @@ interface Api {
 
     @GET("v1/me")
     suspend fun getCurrentUserProfile(): UserResponse
+
+    @GET("v1/me/playlists")
+    suspend fun getMyPlaylists() : PlaylistsPaginatedResponse
+
+    @POST("v1/playlists/{playlist_id}/tracks")
+    suspend fun addItemsToPlaylist(
+        @Path("playlist_id") id: String,
+        @Query("uris") uris: String
+    ) : Response<Unit>
+
 
     @GET("v1/me/top/tracks")
     suspend fun getTopUserTracksAsync(@Query("time_range") timeRange: String): PaginatedResponse

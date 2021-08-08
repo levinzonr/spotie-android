@@ -34,6 +34,7 @@ import cz.levinzonr.spotie.presentation.screens.login.LoginScreen
 import cz.levinzonr.spotie.presentation.screens.newreleases.ReleasesOrchestrator
 import cz.levinzonr.spotie.presentation.screens.newreleases.ReleasesScreen
 import cz.levinzonr.spotie.presentation.screens.player.PlayerComponent
+import cz.levinzonr.spotie.presentation.screens.playlists.PlaylistOrhestrator
 import cz.levinzonr.spotie.presentation.screens.profile.Routes
 import cz.levinzonr.spotie.presentation.screens.profile.RoutesActions
 import cz.levinzonr.spotie.presentation.screens.trackdetails.TrackDetailsScreen
@@ -87,7 +88,7 @@ class MainActivity : ComponentActivity() {
                                 startDestination = MenuItem.Home.route,
                                 modifier = Modifier.padding(it)
                             ) {
-                                navigation(Routes.tracks.path, MenuItem.Home.route) {
+                                navigation(Routes.playlists.path, MenuItem.Home.route) {
                                     composable(Routes.tracks) {
                                         HomeOrchestrator(navController = navController)
                                     }
@@ -101,6 +102,13 @@ class MainActivity : ComponentActivity() {
 
                                     composable(Routes.trackDetails) {
                                         TrackDetailsScreen(hiltViewModel())
+                                    }
+
+                                    composable(Routes.playlists) {
+                                        PlaylistOrhestrator(
+                                            viewModel = hiltViewModel(),
+                                            navHostController = navController
+                                        )
                                     }
                                 }
                             }

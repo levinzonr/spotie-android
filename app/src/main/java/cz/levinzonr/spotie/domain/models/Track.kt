@@ -6,4 +6,6 @@ data class Track(
     val imageUrl: String? = "https://i.scdn.co/image/ab67616d0000b273583e9558baac47836db06acf",
     val artistName: String = "Artist name",
     val album: Album = Album()
-)
+) {
+    val uri: String get() = "spotify:track:$id"
+}
