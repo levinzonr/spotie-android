@@ -88,7 +88,7 @@ class MainActivity : ComponentActivity() {
                                 startDestination = MenuItem.Home.route,
                                 modifier = Modifier.padding(it)
                             ) {
-                                navigation(Routes.playlists.path, MenuItem.Home.route) {
+                                navigation(Routes.tracks.path, MenuItem.Home.route) {
                                     composable(Routes.tracks) {
                                         HomeOrchestrator(navController = navController)
                                     }

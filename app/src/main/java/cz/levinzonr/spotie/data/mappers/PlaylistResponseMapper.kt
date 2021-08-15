@@ -9,7 +9,8 @@ object PlaylistResponseMapper : DtoMapper<PlaylistResponse, Playlist> {
         return Playlist(
             id = dto.id,
             name = dto.name,
-            isCollaborative = dto.collaborative
+            isCollaborative = dto.collaborative,
+            imageUrl = dto.images.firstOrNull()?.url
         )
     }
 }

@@ -14,5 +14,11 @@ fun PlaylistOrhestrator(
     val state = viewModel.stateFlow.collectAsState(initial = State()).value
     PlaylistsScreen(
         state = state,
+        onEvent = {
+            when (it) {
+                is PlaylistScreenEvent.PlaylistClick -> {}
+                is PlaylistScreenEvent.SearchQueryChange -> viewModel.dispatch(Action.QueryChange(it.value))
+            }
+        }
     )
 }
