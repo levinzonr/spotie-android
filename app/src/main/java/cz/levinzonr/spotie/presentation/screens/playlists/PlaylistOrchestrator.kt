@@ -16,7 +16,10 @@ fun PlaylistOrhestrator(
         state = state,
         onEvent = {
             when (it) {
-                is PlaylistScreenEvent.PlaylistClick -> {}
+                is PlaylistScreenEvent.PlaylistClick -> {
+                    navHostController.previousBackStackEntry?.savedStateHandle?.set("id", it.item.id)
+                    navHostController.popBackStack()
+                }
                 is PlaylistScreenEvent.SearchQueryChange -> viewModel.dispatch(Action.QueryChange(it.value))
             }
         }

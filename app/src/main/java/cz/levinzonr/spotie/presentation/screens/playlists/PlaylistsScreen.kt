@@ -1,5 +1,6 @@
 package cz.levinzonr.spotie.presentation.screens.playlists
 
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.padding
@@ -38,7 +39,8 @@ fun PlaylistsScreen(
             items(state.playlists) {
                 PlaylistItem(
                     name = it.name,
-                    image = it.imageUrl
+                    image = it.imageUrl,
+                    modifier = Modifier.clickable { onEvent(PlaylistScreenEvent.PlaylistClick(it)) }
                 )
             }
         }
