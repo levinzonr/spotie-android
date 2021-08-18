@@ -13,10 +13,9 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
-import androidx.lifecycle.viewmodel.compose.viewModel
-import cz.levinzonr.router.core.Route
-import cz.levinzonr.router.core.RouteArg
-import cz.levinzonr.router.core.RouteArgType
+import cz.levinzonr.saferoute.annotations.Route
+import cz.levinzonr.saferoute.annotations.RouteArg
+import cz.levinzonr.saferoute.annotations.RouteArgType
 import cz.levinzonr.spotie.presentation.screens.trackdetails.components.TrackFeaturesSection
 import cz.levinzonr.spotie.presentation.screens.trackdetails.components.TrackHeader
 import cz.levinzonr.spotie.R

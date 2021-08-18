@@ -3,7 +3,7 @@ package cz.levinzonr.spotie.presentation.screens.playlists
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
 import androidx.navigation.NavHostController
-import cz.levinzonr.router.core.Route
+import cz.levinzonr.saferoute.annotations.Route
 
 @Composable
 @Route("playlists")

@@ -8,8 +8,8 @@ object Dependencies {
     const val coil = "io.coil-kt:coil-compose:1.3.2"
 
     object SafeRouting {
-        const val compiler = "com.github.levinzonr.compose-safe-routing:compiler:1.0.0"
-        const val core = "com.github.levinzonr.compose-safe-routing:core:1.0.0"
+        const val compiler = "com.github.levinzonr.compose-safe-routing:compiler:2.0.0"
+        const val core = "com.github.levinzonr.compose-safe-routing:core:2.0.0"
     }
 
     object OkHttp {

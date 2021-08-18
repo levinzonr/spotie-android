@@ -11,7 +11,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.hilt.navigation.compose.hiltViewModel
-import cz.levinzonr.router.core.Route
+import cz.levinzonr.saferoute.annotations.Route
 
 @Composable
 @Route(name = "settings")

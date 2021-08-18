@@ -9,7 +9,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.google.accompanist.insets.statusBarsPadding
-import cz.levinzonr.router.core.Route
+import cz.levinzonr.saferoute.annotations.Route
 import cz.levinzonr.spotie.presentation.screens.home.components.NewReleasesItem
 import cz.levinzonr.spotie.presentation.screens.home.components.TopTracksPreview
 import cz.levinzonr.spotie.presentation.theme.AppTheme

@@ -11,7 +11,8 @@ import cz.levinzonr.spotie.domain.usecases.ifError
 import cz.levinzonr.spotie.domain.usecases.ifSuccess
 import cz.levinzonr.spotie.domain.usecases.player.PlayTrackUseCase
 import cz.levinzonr.spotie.domain.usecases.player.PlayerStateUseCase
-import cz.levinzonr.spotie.presentation.screens.profile.args.TrackDetailsRouteArgs
+import cz.levinzonr.spotie.presentation.screens.trackdetails.args.TrackDetailsRouteArgs
+import cz.levinzonr.spotie.presentation.screens.trackdetails.args.TrackDetailsRouteArgsFactory
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.*
@@ -26,7 +27,7 @@ class TrackDetailsViewModel @Inject constructor(
     private val playTrackUseCase: PlayTrackUseCase
 ) : RoxieViewModel<Action, State, Change>() {
 
-    private val trackId = TrackDetailsRouteArgs.fromSavedStatedHandle(savedStateHandle).trackId
+    private val trackId = TrackDetailsRouteArgsFactory.fromSavedStateHandle(savedStateHandle).trackId
 
     override val initialState: State = State.Idle
 

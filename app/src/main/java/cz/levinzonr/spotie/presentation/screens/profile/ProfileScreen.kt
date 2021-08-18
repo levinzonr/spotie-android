@@ -13,7 +13,7 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.lifecycle.viewmodel.compose.viewModel
-import cz.levinzonr.router.core.Route
+import cz.levinzonr.saferoute.annotations.Route
 import cz.levinzonr.spotie.presentation.screens.profile.components.UserInfo
 import cz.levinzonr.spotie.presentation.screens.player.PlayerComponent
 import cz.levinzonr.spotie.presentation.theme.AppTheme

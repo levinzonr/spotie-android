@@ -17,7 +17,6 @@ import androidx.navigation.compose.composable
 import coil.compose.ImagePainter
 import coil.compose.rememberImagePainter
 import coil.transform.RoundedCornersTransformation
-import cz.levinzonr.spotie.presentation.screens.profile.RouteSpec
 import java.lang.Math.PI
 import java.lang.Math.cos
 import kotlin.math.min
@@ -25,13 +24,6 @@ import kotlin.math.pow
 import kotlin.math.sin
 import kotlin.math.sqrt
 
-fun NavGraphBuilder.composable(
-    spec: RouteSpec,
-    deepLinks: List<NavDeepLink> = listOf(),
-    content: @Composable (NavBackStackEntry) -> Unit
-) {
-    composable(spec.path, spec.navArgs, deepLinks, content)
-}
 
 @Composable
 fun albumImage(url: String?, cornerRadius: Dp = 16.dp) : ImagePainter {

@@ -16,6 +16,7 @@ import androidx.compose.ui.graphics.Color
 import androidx.core.view.WindowCompat
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.compose.NavHost
+import androidx.navigation.compose.composable
 import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
 import androidx.navigation.navigation
@@ -25,7 +26,7 @@ import com.google.accompanist.pager.ExperimentalPagerApi
 import com.google.accompanist.systemuicontroller.rememberSystemUiController
 import com.spotify.sdk.android.auth.AuthorizationClient
 import com.spotify.sdk.android.auth.AuthorizationRequest
-import cz.levinzonr.spotie.presentation.extenstions.composable
+import cz.levinzonr.saferoute.core.composable
 import cz.levinzonr.spotie.presentation.navigation.MenuItem
 import cz.levinzonr.spotie.presentation.screens.home.HomeOrchestrator
 import cz.levinzonr.spotie.presentation.screens.home.HomeScreenEvent
@@ -88,23 +89,24 @@ class MainActivity : ComponentActivity() {
                                 startDestination = MenuItem.Home.route,
                                 modifier = Modifier.padding(it)
                             ) {
-                                navigation(Routes.tracks.path, MenuItem.Home.route) {
-                                    composable(Routes.tracks) {
+                                navigation(Routes.Tracks.route, MenuItem.Home.route) {
+                                    composable(Routes.Tracks) {
                                         HomeOrchestrator(navController = navController)
                                     }
 
-                                    composable(Routes.newReleases) {
+
+                                    composable(Routes.NewReleases) {
                                         ReleasesOrchestrator(
                                             viewModel = hiltViewModel(),
                                             navController = navController
                                         )
                                     }
 
-                                    composable(Routes.trackDetails) {
+                                    composable(Routes.TrackDetails) {
                                         TrackDetailsScreen(hiltViewModel())
                                     }
 
-                                    composable(Routes.playlists) {
+                                    composable(Routes.Playlists) {
                                         PlaylistOrhestrator(
                                             viewModel = hiltViewModel(),
                                             navHostController = navController
